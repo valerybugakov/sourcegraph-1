@@ -44,6 +44,7 @@ var (
 
 // get branch from flag or git
 func getCIBranch() (branch string, fromFlag bool, err error) {
+	fmt.Println("Hello")
 	fromFlag = true
 	switch {
 	case *ciLogsBranchFlag != "":
