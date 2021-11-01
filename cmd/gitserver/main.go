@@ -4,6 +4,7 @@ package main // import "github.com/sourcegraph/sourcegraph/cmd/gitserver"
 import (
 	"container/list"
 	"context"
+	"fmt"
 	"log"
 	"net"
 	"net/http"
@@ -56,6 +57,7 @@ var (
 func main() {
 	ctx := context.Background()
 
+	fmt.Println("Hello")
 	env.Lock()
 	env.HandleHelpFlag()
 
