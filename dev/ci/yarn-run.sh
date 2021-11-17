@@ -7,6 +7,8 @@ echo "--- yarn"
 yarn --mutex network --frozen-lockfile --network-timeout 60000
 yarn --mutex network --cwd dev/release --frozen-lockfile --network-timeout 60000
 
+buildkite-agent annotate --append "Yarn run! 🚀"
+
 echo "--- generate"
 yarn gulp generate
 

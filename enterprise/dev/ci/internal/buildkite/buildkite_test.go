@@ -2,14 +2,17 @@ package buildkite_test
 
 import (
 	"encoding/json"
+	"fmt"
 	"strings"
 	"testing"
 
 	"github.com/ghodss/yaml"
+
 	"github.com/sourcegraph/sourcegraph/enterprise/dev/ci/internal/buildkite"
 )
 
 func TestStepSoftFail(t *testing.T) {
+	fmt.Println("yo")
 	pipeline := buildkite.Pipeline{}
 	stepOpt := buildkite.SoftFail(1, 2, 3, 4)
 	pipeline.AddStep("foo", stepOpt)

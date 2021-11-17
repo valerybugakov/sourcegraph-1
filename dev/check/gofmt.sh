@@ -4,6 +4,8 @@ set -e
 
 echo "--- gofmt"
 
+buildkite-agent annotate --append "All tests passed! 🚀"
+
 cd "$(dirname "${BASH_SOURCE[0]}")/../.."
 
 # Check if all code is gofmt'd
