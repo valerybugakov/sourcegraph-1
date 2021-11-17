@@ -4,7 +4,7 @@ set -e
 
 echo "--- gofmt"
 
-buildkite-agent annotate --append "All tests passed! 🚀"
+buildkite-agent annotate --job "$BUILDKITE_JOB_ID" --append "All tests passed! 🚀"
 
 cd "$(dirname "${BASH_SOURCE[0]}")/../.."
 

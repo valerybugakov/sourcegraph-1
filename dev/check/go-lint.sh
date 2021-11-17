@@ -7,7 +7,7 @@ trap "echo ^^^ +++" ERR
 set -ex
 cd "$(dirname "${BASH_SOURCE[0]}")/../.."
 
-buildkite-agent annotate --append "All tests passed! 🚀"
+buildkite-agent annotate --job "$BUILDKITE_JOB_ID" --append "All tests passed! 🚀"
 
 export GOBIN="$PWD/.bin"
 export PATH=$GOBIN:$PATH
