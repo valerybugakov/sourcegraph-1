@@ -473,6 +473,7 @@ func clusterQA(candidateTag string) operations.Operation {
 			bk.Env("CANDIDATE_VERSION", candidateTag),
 			bk.Env("DOCKER_CLUSTER_IMAGES_TXT", strings.Join(images.DeploySourcegraphDockerImages, "\n")),
 			bk.Env("NO_CLEANUP", "false"),
+			bk.Env("LOG_STATUS_MESSAGES", "true"),
 			bk.Env("SOURCEGRAPH_BASE_URL", "http://127.0.0.1:7080"),
 			bk.Env("SOURCEGRAPH_SUDO_USER", "admin"),
 			bk.Env("TEST_USER_EMAIL", "test@sourcegraph.com"),
