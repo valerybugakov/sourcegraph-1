@@ -3,6 +3,7 @@ package shared
 import (
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"time"
 
@@ -23,7 +24,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/observation"
 )
 
-func SetupSqlite(observationContext *observation.Context) (types.SearchFunc, []goroutine.BackgroundRoutine) {
+func SetupSqlite(observationContext *observation.Context) (types.SearchFunc, func(http.ResponseWriter, *http.Request), []goroutine.BackgroundRoutine) {
 	baseConfig := env.BaseConfig{}
 	config := types.LoadSqliteConfig(baseConfig)
 	if err := baseConfig.Validate(); err != nil {
@@ -69,5 +70,5 @@ func SetupSqlite(observationContext *observation.Context) (types.SearchFunc, []g
 	cacheSizeBytes := int64(config.CacheSizeMB) * 1000 * 1000
 	cacheEvicter := janitor.NewCacheEvicter(evictionInterval, cache, cacheSizeBytes, janitor.NewMetrics(observationContext))
 
-	return searchFunc, []goroutine.BackgroundRoutine{cacheEvicter}
+	return searchFunc, nil, []goroutine.BackgroundRoutine{cacheEvicter}
 }
