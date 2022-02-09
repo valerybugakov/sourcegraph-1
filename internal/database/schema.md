@@ -166,19 +166,15 @@ Foreign-key constraints:
  path                 | text                     |           | not null | 
  file_matches         | text[]                   |           | not null | 
  only_fetch_workspace | boolean                  |           | not null | false
- steps                | jsonb                    |           |          | '[]'::jsonb
  created_at           | timestamp with time zone |           | not null | now()
  updated_at           | timestamp with time zone |           | not null | now()
  ignored              | boolean                  |           | not null | false
  unsupported          | boolean                  |           | not null | false
  skipped              | boolean                  |           | not null | false
  cached_result_found  | boolean                  |           | not null | false
- skipped_steps        | integer[]                |           | not null | '{}'::integer[]
  step_cache_results   | jsonb                    |           | not null | '{}'::jsonb
 Indexes:
     "batch_spec_workspaces_pkey" PRIMARY KEY, btree (id)
-Check constraints:
-    "batch_spec_workspaces_steps_check" CHECK (jsonb_typeof(steps) = 'array'::text)
 Foreign-key constraints:
     "batch_spec_workspaces_batch_spec_id_fkey" FOREIGN KEY (batch_spec_id) REFERENCES batch_specs(id) ON DELETE CASCADE DEFERRABLE
     "batch_spec_workspaces_repo_id_fkey" FOREIGN KEY (repo_id) REFERENCES repo(id) DEFERRABLE
@@ -2218,6 +2214,7 @@ Foreign-key constraints:
  updated_at    | timestamp with time zone |           | not null | now()
 Indexes:
     "sub_repo_permissions_repo_id_user_id_version_uindex" UNIQUE, btree (repo_id, user_id, version)
+    "sub_repo_perms_user_id" btree (user_id)
 Foreign-key constraints:
     "sub_repo_permissions_repo_id_fk" FOREIGN KEY (repo_id) REFERENCES repo(id) ON DELETE CASCADE
     "sub_repo_permissions_users_id_fk" FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE

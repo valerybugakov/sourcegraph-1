@@ -7,12 +7,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cockroachdb/errors"
 	"github.com/peterbourgon/ff/v3/ffcli"
 
 	"github.com/sourcegraph/sourcegraph/dev/sg/internal/run"
 	"github.com/sourcegraph/sourcegraph/dev/sg/internal/stdout"
 	"github.com/sourcegraph/sourcegraph/dev/sg/internal/usershell"
+	"github.com/sourcegraph/sourcegraph/lib/errors"
 	"github.com/sourcegraph/sourcegraph/lib/output"
 )
 
@@ -30,6 +30,8 @@ See the "checks:" in the configuration file.`,
 	}
 )
 
+// NOTE: These checkFuncs are also used by `sg doctor`, so make sure that when
+// you change something here `sg setup` still works as expected.
 var checkFuncs = map[string]dependencyCheck{
 	"postgres": anyChecks(checkSourcegraphDatabase, checkPostgresConnection),
 	"redis":    retryCheck(checkRedisConnection, 5, 500*time.Millisecond),

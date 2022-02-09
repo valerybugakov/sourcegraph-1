@@ -4,7 +4,6 @@ import (
 	"context"
 	"database/sql"
 
-	"github.com/cockroachdb/errors"
 	"github.com/keegancsmith/sqlf"
 	"github.com/lib/pq"
 
@@ -13,6 +12,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/database/basestore"
 	"github.com/sourcegraph/sourcegraph/internal/database/dbutil"
 	"github.com/sourcegraph/sourcegraph/internal/extsvc"
+	"github.com/sourcegraph/sourcegraph/lib/errors"
 )
 
 // SubRepoPermsVersion is defines the version we are using to encode our include
@@ -118,8 +118,8 @@ func (s *subRepoPermsStore) Get(ctx context.Context, userID int32, repoID api.Re
 	q := sqlf.Sprintf(`
 SELECT path_includes, path_excludes
 FROM sub_repo_permissions
-WHERE user_id = %s
-  AND repo_id = %s
+WHERE repo_id = %s
+  AND user_id = %s
   AND version = %s
 `, userID, repoID, SubRepoPermsVersion)
 
