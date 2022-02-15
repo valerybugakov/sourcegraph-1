@@ -30,7 +30,7 @@ import (
 
 const addr = ":3184"
 
-func Main(setup func(observationContext *observation.Context) (types.SearchFunc, func(http.ResponseWriter, *http.Request), []goroutine.BackgroundRoutine)) {
+func Main(setup func(observationContext *observation.Context) (types.SearchFunc, func(http.ResponseWriter, *http.Request), []goroutine.BackgroundRoutine, error)) {
 	routines := []goroutine.BackgroundRoutine{}
 
 	// Set up Google Cloud Profiler when running in Cloud
@@ -49,7 +49,10 @@ func Main(setup func(observationContext *observation.Context) (types.SearchFunc,
 		},
 	}
 	// Run setup
-	searchFunc, handleStatus, newRoutines := setup(observationContext)
+	searchFunc, handleStatus, newRoutines, err := setup(observationContext)
+	if err != nil {
+		log.Fatalf("Failed to setup: %v", err)
+	}
 	routines = append(routines, newRoutines...)
 
 	// Initialization

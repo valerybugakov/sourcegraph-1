@@ -24,7 +24,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/observation"
 )
 
-func SetupSqlite(observationContext *observation.Context) (types.SearchFunc, func(http.ResponseWriter, *http.Request), []goroutine.BackgroundRoutine) {
+func SetupSqlite(observationContext *observation.Context) (types.SearchFunc, func(http.ResponseWriter, *http.Request), []goroutine.BackgroundRoutine, error) {
 	baseConfig := env.BaseConfig{}
 	config := types.LoadSqliteConfig(baseConfig)
 	if err := baseConfig.Validate(); err != nil {
@@ -70,5 +70,5 @@ func SetupSqlite(observationContext *observation.Context) (types.SearchFunc, fun
 	cacheSizeBytes := int64(config.CacheSizeMB) * 1000 * 1000
 	cacheEvicter := janitor.NewCacheEvicter(evictionInterval, cache, cacheSizeBytes, janitor.NewMetrics(observationContext))
 
-	return searchFunc, nil, []goroutine.BackgroundRoutine{cacheEvicter}
+	return searchFunc, nil, []goroutine.BackgroundRoutine{cacheEvicter}, nil
 }
