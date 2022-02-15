@@ -29,6 +29,7 @@ jobs:
           - client/http-client
           - client/codeintellify
           - client/template-parser
+          - client/client-api
     steps:
       # Setup
       - name: Checkout
