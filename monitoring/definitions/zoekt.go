@@ -24,10 +24,10 @@ func Zoekt() *monitoring.Container {
 		NoSourcegraphDebugServer: true,
 		Variables: []monitoring.ContainerVariable{
 			{
-				Label: "Instance",
-				Name:  "instance",
-				Query: "label_values(index_num_assigned, instance)",
-				Multi: true,
+				Label:        "Instance",
+				Name:         "instance",
+				OptionsQuery: "label_values(index_num_assigned, instance)",
+				Multi:        true,
 			},
 		},
 		Groups: []monitoring.Group{
@@ -54,7 +54,7 @@ func Zoekt() *monitoring.Container {
 									LegendFormat: "tracked",
 								}}
 								p.GraphPanel.Tooltip.Shared = true
-							}),
+							}).MinAuto(),
 							Owner: monitoring.ObservableOwnerSearchCore,
 							Interpretation: `
 								Sudden changes can be caused by indexing configuration changes.
@@ -86,7 +86,7 @@ func Zoekt() *monitoring.Container {
 									LegendFormat: "{{instance}} tracked",
 								}}
 								p.GraphPanel.Tooltip.Shared = true
-							}),
+							}).MinAuto(),
 							Owner: monitoring.ObservableOwnerSearchCore,
 							Interpretation: `
 								Sudden changes can be caused by indexing configuration changes.
