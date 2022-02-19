@@ -12,8 +12,17 @@ import (
 
 type key struct{}
 
+type Shell string
+
+const (
+	BashShell Shell = "bash"
+	ZshShell  Shell = "zsh"
+	FishShell Shell = "fish"
+)
+
 // userShell stores which shell and which configuration file a user is using.
 type userShell struct {
+	shell           Shell
 	shellPath       string
 	shellConfigPath string
 }
@@ -30,37 +39,49 @@ func ShellConfigPath(ctx context.Context) string {
 	return v.shellConfigPath
 }
 
+// Shell returns the current shell type used by the current unix user.
+func ShellType(ctx context.Context) Shell {
+	v := ctx.Value(key{}).(userShell)
+	return v.shell
+}
+
 // GuessUserShell inspect the current environment to infer the shell the current user is running
 // and which configuration file it depends on.
-func GuessUserShell() (string, string, error) {
+func GuessUserShell() (shellPath string, shellrc string, shell Shell, error error) {
 	home, err := os.UserHomeDir()
 	if err != nil {
-		return "", "", err
+		return "", "", "", err
 	}
 	// Look up which shell the user is using, because that's most likely the
 	// one that has all the environment correctly setup.
-	shell, ok := os.LookupEnv("SHELL")
-	var shellrc string
+	shellPath, ok := os.LookupEnv("SHELL")
 	if !ok {
 		// If we can't find the shell in the environment, we fall back to `bash`
-		shell = "bash"
+		shellPath = "bash"
+		shell = BashShell
 	}
 	switch {
-	case strings.Contains(shell, "bash"):
+	case strings.Contains(shellPath, "bash"):
 		shellrc = ".bashrc"
-	case strings.Contains(shell, "zsh"):
+		shell = BashShell
+	case strings.Contains(shellPath, "zsh"):
 		shellrc = ".zshrc"
+		shell = ZshShell
+	case strings.Contains(shellPath, "fish"):
+		shellrc = ".config/fish/config.fish"
+		shell = FishShell
 	}
-	return shell, filepath.Join(home, shellrc), nil
+	return shellPath, filepath.Join(home, shellrc), shell, nil
 }
 
 // Context extends ctx with the UserContext of the current user.
 func Context(ctx context.Context) (context.Context, error) {
-	shell, shellConfigPath, err := GuessUserShell()
+	shell, shellConfigPath, shellType, err := GuessUserShell()
 	if err != nil {
 		return nil, err
 	}
 	userCtx := userShell{
+		shell:           shellType,
 		shellPath:       shell,
 		shellConfigPath: shellConfigPath,
 	}
@@ -72,6 +93,9 @@ func Context(ctx context.Context) (context.Context, error) {
 // user to restart sg for many checks.
 func Cmd(ctx context.Context, cmd string) *exec.Cmd {
 	command := fmt.Sprintf("source %s || true; %s", ShellConfigPath(ctx), cmd)
+	if ShellType(ctx) == FishShell {
+		command = fmt.Sprintf("fish || true; %s", cmd)
+	}
 	return exec.CommandContext(ctx, ShellPath(ctx), "-c", command)
 }
 
