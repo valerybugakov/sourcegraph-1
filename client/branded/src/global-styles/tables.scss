@@ -1,8 +1,8 @@
 .table {
     width: 100%;
     margin-bottom: $spacer;
-    color: $table-color;
-    background-color: $table-bg; // Reset for nesting within parents with `background-color`.
+    color: var(--gray-900);
+    background-color: null; // Reset for nesting within parents with `background-color`.
 
     th,
     td {

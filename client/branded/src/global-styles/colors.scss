@@ -29,6 +29,8 @@ $gray-06: #798baf;
 $gray-08: #343a4d;
 // Exception that's used in $theme-colors.
 $gray-09: #262b38;
+// Exception that's used in table
+$gray-900: #212529;
 
 // Core semantic base colors.
 $primary: $blue;
@@ -60,6 +62,7 @@ $theme-colors: (
     --gray-11: #181b26;
     --gray-12: #14171f;
     --black: #0f111a;
+    --gray-900: $gray-900;
 
     // Other root palette colors.
     --blue: #{$blue};
