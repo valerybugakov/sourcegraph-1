@@ -28,7 +28,7 @@ export interface CodeInsightsRouterProps
         PlatformContextProps,
         TelemetryProps {
     /**
-     * Authenticated user info, Used to decide where code insight will appears
+     * Authenticated user info, Used to decide where code insight will appear
      * in personal dashboard (private) or in organisation dashboard (public)
      */
     authenticatedUser: AuthenticatedUser
@@ -38,7 +38,7 @@ export interface CodeInsightsRouterProps
 /**
  * Turn on/off the cloud landing page layout. Make sure it's off until GA release will happen.
  */
-const CLOUD_LANDING_PAGE = false
+const CLOUD_LANDING_PAGE = true
 
 /**
  * Main Insight routing component. Main entry point to code insights UI.
