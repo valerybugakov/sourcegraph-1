@@ -7,6 +7,11 @@ env:
   PGSSLMODE: disable
   SG_DEV_MIGRATE_ON_APPLICATION_STARTUP: 'true'
 
+  PRECISE_CODE_INTEL_CLEANUP_TASK_INTERVAL: 500ms
+  PRECISE_CODE_INTEL_COMMIT_GRAPH_UPDATE_TASK_INTERVAL: 500ms
+  PRECISE_CODE_INTEL_RETENTION_UPLOAD_PROCESS_DELAY: 500ms
+  PRECISE_CODE_INTEL_RETENTION_REPOSITORY_PROCESS_DELAY: 500ms
+
   SRC_REPOS_DIR: $HOME/.sourcegraph/repos
   SRC_LOG_LEVEL: info
   SRC_LOG_FORMAT: condensed
@@ -770,7 +775,7 @@ commandsets:
       - enterprise-web
       - gitserver
       - searcher
-      - symbols
+      # - symbols
       - caddy
       - docsite
       - syntax-highlighter
