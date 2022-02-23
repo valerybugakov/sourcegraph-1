@@ -13,7 +13,7 @@ import { CodeInsightsContextProps } from '../../insights/types'
 const CodeInsightsAppLazyRouter = lazyComponent(() => import('./CodeInsightsAppRouter'), 'CodeInsightsAppRouter')
 
 const CodeInsightsDotComGetStartedLazy = lazyComponent(
-    () => import('./pages/dot-com-get-started/CodeInsightsDotComGetStarted'),
+    () => import('./pages/landing/dot-com-get-started/CodeInsightsDotComGetStarted'),
     'CodeInsightsDotComGetStarted'
 )
 
@@ -38,7 +38,7 @@ export interface CodeInsightsRouterProps
 /**
  * Turn on/off the cloud landing page layout. Make sure it's off until GA release will happen.
  */
-const CLOUD_LANDING_PAGE = true
+const CLOUD_LANDING_PAGE = false
 
 /**
  * Main Insight routing component. Main entry point to code insights UI.
