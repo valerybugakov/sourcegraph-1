@@ -8,6 +8,7 @@ import React, { useState, useCallback, useRef, useEffect, useMemo } from 'react'
 import { Markdown } from '@sourcegraph/shared/src/components/Markdown'
 import { MonacoEditor } from '@sourcegraph/shared/src/components/MonacoEditor'
 import { ThemeProps } from '@sourcegraph/shared/src/theme'
+import { Icon } from '@sourcegraph/wildcard'
 
 import blockStyles from './SearchNotebookBlock.module.scss'
 import { BlockMenuAction, SearchNotebookBlockMenu } from './SearchNotebookBlockMenu'
@@ -104,14 +105,14 @@ export const SearchNotebookMarkdownBlock: React.FunctionComponent<SearchNotebook
                 ? {
                       type: 'button',
                       label: 'Render',
-                      icon: <PlayCircleOutlineIcon className="icon-inline" />,
+                      icon: <Icon as={PlayCircleOutlineIcon} />,
                       onClick: runBlock,
                       keyboardShortcutLabel: `${modifierKeyLabel} + ↵`,
                   }
                 : {
                       type: 'button',
                       label: 'Edit',
-                      icon: <PencilIcon className="icon-inline" />,
+                      icon: <Icon as={PencilIcon} />,
                       onClick: onEnterBlock,
                       keyboardShortcutLabel: '↵',
                   },

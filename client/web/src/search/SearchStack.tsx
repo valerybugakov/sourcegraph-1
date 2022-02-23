@@ -17,7 +17,7 @@ import { IHighlightLineRange } from '@sourcegraph/shared/src/schema'
 import { FilterType } from '@sourcegraph/shared/src/search/query/filters'
 import { appendContextFilter, updateFilter } from '@sourcegraph/shared/src/search/query/transformer'
 import { buildSearchURLQuery, toPrettyBlobURL } from '@sourcegraph/shared/src/util/url'
-import { Button, Link, TextArea } from '@sourcegraph/wildcard'
+import { Button, Link, TextArea, Icon } from '@sourcegraph/wildcard'
 
 import { PageRoutes } from '../routes.constants'
 import { useExperimentalFeatures } from '../stores'
@@ -117,7 +117,7 @@ export const SearchStack: React.FunctionComponent<{ initialOpen?: boolean }> = (
                         aria-controls={SEARCH_STACK_ID}
                         aria-expanded="true"
                     >
-                        <PencilIcon className="icon-inline" />
+                        <Icon as={PencilIcon} />
                         <h4 className={classNames(styles.openVisible, 'px-1')}>Notepad</h4>
                         <small>
                             ({reversedEntries.length} item{reversedEntries.length === 1 ? '' : 's'})
@@ -131,7 +131,7 @@ export const SearchStack: React.FunctionComponent<{ initialOpen?: boolean }> = (
                         aria-controls={SEARCH_STACK_ID}
                         aria-expanded="true"
                     >
-                        <CloseIcon className="icon-inline" />
+                        <Icon as={CloseIcon} />
                     </Button>
                 </div>
                 <ul>
@@ -175,7 +175,7 @@ export const SearchStack: React.FunctionComponent<{ initialOpen?: boolean }> = (
                     )}
                     <div className="d-flex justify-content-between align-items-center">
                         <Button onClick={createNotebook} variant="primary" size="sm" disabled={entries.length === 0}>
-                            <NotebookPlusIcon className="icon-inline" /> Create Notebook
+                            <Icon as={NotebookPlusIcon} /> Create Notebook
                         </Button>
                         <Button
                             aria-label="Remove all entries"
@@ -185,7 +185,7 @@ export const SearchStack: React.FunctionComponent<{ initialOpen?: boolean }> = (
                             disabled={entries.length === 0}
                             onClick={() => setConfirmRemoveAll(true)}
                         >
-                            <TrashIcon className="icon-inline" />
+                            <Icon as={TrashIcon} />
                         </Button>
                     </div>
                 </div>
@@ -242,7 +242,7 @@ const AddEntryButton: React.FunctionComponent<AddEntryButtonProps> = ({ entry })
                         addSearchStackEntry(entry)
                     }}
                 >
-                    + <SearchIcon className="icon-inline" /> Search
+                    + <Icon as={SearchIcon} /> Search
                 </Button>
             )
         case 'file':
@@ -258,7 +258,7 @@ const AddEntryButton: React.FunctionComponent<AddEntryButtonProps> = ({ entry })
                             addSearchStackEntry(entry, 'file')
                         }}
                     >
-                        + <FileDocumentOutlineIcon className="icon-inline" /> File
+                        + <Icon as={FileDocumentOutlineIcon} /> File
                     </Button>
                     {entry.lineRange && (
                         <Button
@@ -271,7 +271,7 @@ const AddEntryButton: React.FunctionComponent<AddEntryButtonProps> = ({ entry })
                                 addSearchStackEntry(entry, 'range')
                             }}
                         >
-                            + <CodeBracketsIcon className="icon-inline" /> Range (
+                            + <Icon as={CodeBracketsIcon} /> Range (
                             {entry.lineRange.endLine - entry.lineRange.startLine + 1})
                         </Button>
                     )}
@@ -325,7 +325,7 @@ const SearchStackEntryComponent: React.FunctionComponent<SearchStackEntryCompone
                             setShowAnnotationInput(show => !show)
                         }}
                     >
-                        <TextBoxIcon className="icon-inline" />
+                        <Icon as={TextBoxIcon} />
                     </Button>
                     <Button
                         aria-label="Remove entry"
@@ -337,7 +337,7 @@ const SearchStackEntryComponent: React.FunctionComponent<SearchStackEntryCompone
                             removeSearchStackEntry(entry)
                         }}
                     >
-                        <CloseIcon className="icon-inline" />
+                        <Icon as={CloseIcon} />
                     </Button>
                 </span>
             </div>
@@ -362,7 +362,7 @@ function getUIComponentsForEntry(
     switch (entry.type) {
         case 'search':
             return {
-                icon: <SearchIcon className="icon-inline" />,
+                icon: <Icon as={SearchIcon} />,
                 title: <SyntaxHighlightedSearchQuery query={entry.query} />,
                 location: {
                     pathname: '/search',
@@ -376,11 +376,7 @@ function getUIComponentsForEntry(
             }
         case 'file':
             return {
-                icon: entry.lineRange ? (
-                    <CodeBracketsIcon className="icon-inline" />
-                ) : (
-                    <FileDocumentOutlineIcon className="icon-inline" />
-                ),
+                icon: entry.lineRange ? <Icon as={CodeBracketsIcon} /> : <Icon as={FileDocumentOutlineIcon} />,
                 title: (
                     <span title={entry.path}>
                         {fileName(entry.path)}

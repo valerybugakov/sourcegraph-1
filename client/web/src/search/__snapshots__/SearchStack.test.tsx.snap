@@ -17,7 +17,7 @@ exports[`Search Stack inital state shows the add button if an entry can be added
     >
       + 
       <svg
-        class="mdi-icon icon-inline"
+        class="mdi-icon iconInline"
         fill="currentColor"
         height="24"
         viewBox="0 0 24 24"
@@ -53,7 +53,7 @@ exports[`Search Stack inital state shows the top of the stack if entries exist 1
           class="flex-shrink-0 text-muted mr-1"
         >
           <svg
-            class="mdi-icon icon-inline"
+            class="mdi-icon iconInline"
             fill="currentColor"
             height="24"
             viewBox="0 0 24 24"
@@ -88,7 +88,7 @@ exports[`Search Stack inital state shows the top of the stack if entries exist 1
             type="button"
           >
             <svg
-              class="mdi-icon icon-inline"
+              class="mdi-icon iconInline"
               fill="currentColor"
               height="24"
               viewBox="0 0 24 24"
@@ -106,7 +106,7 @@ exports[`Search Stack inital state shows the top of the stack if entries exist 1
             type="button"
           >
             <svg
-              class="mdi-icon icon-inline"
+              class="mdi-icon iconInline"
               fill="currentColor"
               height="24"
               viewBox="0 0 24 24"

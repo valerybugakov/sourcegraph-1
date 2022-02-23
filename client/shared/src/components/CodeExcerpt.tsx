@@ -8,6 +8,7 @@ import { catchError, filter, switchMap, map, distinctUntilChanged } from 'rxjs/o
 
 import { asError, ErrorLike, highlightNode, isErrorLike } from '@sourcegraph/common'
 import { Repo } from '@sourcegraph/shared/src/util/url'
+import { Icon } from '@sourcegraph/wildcard'
 
 import * as GQL from '../schema'
 
@@ -142,7 +143,7 @@ export class CodeExcerpt extends React.PureComponent<Props, State> {
                     )}
                     {this.state.blobLinesOrError && isErrorLike(this.state.blobLinesOrError) && (
                         <div className={styles.codeExcerptAlert}>
-                            <AlertCircleIcon className="icon-inline mr-2" />
+                            <Icon className="mr-2" as={AlertCircleIcon} />
                             {this.state.blobLinesOrError.message}
                         </div>
                     )}
