@@ -2,7 +2,6 @@ package repos
 
 import (
 	"context"
-	"database/sql"
 	"fmt"
 	"sort"
 	"strconv"
@@ -23,7 +22,6 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/conf"
 	"github.com/sourcegraph/sourcegraph/internal/database"
 	"github.com/sourcegraph/sourcegraph/internal/gitserver/gitdomain"
-	"github.com/sourcegraph/sourcegraph/internal/repos"
 	"github.com/sourcegraph/sourcegraph/internal/search"
 	"github.com/sourcegraph/sourcegraph/internal/search/limits"
 	"github.com/sourcegraph/sourcegraph/internal/search/query"
@@ -57,8 +55,9 @@ type Pager interface {
 }
 
 type Resolver struct {
-	DB   database.DB
-	Opts search.RepoOptions
+	DB                   database.DB
+	Opts                 search.RepoOptions
+	DependenciesResolver DependenciesResolver
 }
 
 func (r *Resolver) Paginate(ctx context.Context, op *search.RepoOptions, handle func(*Resolved) error) (err error) {
@@ -529,6 +528,9 @@ func (r *Resolver) dependencies(ctx context.Context, op *search.RepoOptions) (_ 
 	if !conf.ExperimentalFeatures().DependenciesSearch {
 		return nil, nil, errors.Errorf("support for `repo:dependencies()` is disabled in site config (`experimentalFeatures.dependenciesSearch`)")
 	}
+	if r.DependenciesResolver == nil {
+		panic("Failed to set internal/search/repos/Resolver.DependenciesResolver")
+	}
 
 	repoRevs := make(map[string]map[string]struct{}, len(op.Dependencies))
 	for _, depParams := range op.Dependencies {
@@ -573,13 +575,7 @@ func (r *Resolver) dependencies(ctx context.Context, op *search.RepoOptions) (_ 
 		flattenedRepoRevs[k] = keys
 	}
 
-	dependencyRepoRevs, err := NewDependenciesAPI(
-		r.DB,
-		// We pass in these methods as functions to avoid a circular dependency between
-		// the codeinteldbstore package and the repos package and to make testing easier.
-		r.DB.ExternalServices().List,
-		repos.NewStore(r.DB, sql.TxOptions{}).EnqueueSingleSyncJob,
-	).Dependencies(
+	dependencyRepoRevs, err := r.DependenciesResolver.Dependencies(
 		ctx,
 		flattenedRepoRevs,
 	)

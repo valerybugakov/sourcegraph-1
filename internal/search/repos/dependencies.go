@@ -17,22 +17,22 @@ import (
 	"github.com/sourcegraph/sourcegraph/lib/errors"
 )
 
-type DependenciesAPI interface {
+type DependenciesResolver interface {
 	Dependencies(ctx context.Context, repoRevs map[string][]string) (_ map[string][]string, err error)
 }
 
-type dependenciesAPI struct {
+type dependenciesResolver struct {
 	db       database.DB
 	listFunc func(context.Context, database.ExternalServicesListOptions) (dependencyRevs []*types.ExternalService, err error)
 	syncFunc func(context.Context, int64) error
 }
 
-func NewDependenciesAPI(
+func NewDependenciesResolver(
 	db database.DB,
 	listFunc func(context.Context, database.ExternalServicesListOptions) (dependencyRevs []*types.ExternalService, err error),
 	syncFunc func(context.Context, int64) error,
-) *dependenciesAPI {
-	return &dependenciesAPI{
+) *dependenciesResolver {
+	return &dependenciesResolver{
 		db:       db,
 		listFunc: listFunc,
 		syncFunc: syncFunc,
@@ -42,7 +42,7 @@ func NewDependenciesAPI(
 // Dependencies resolves the (transitive) dependencies for a set of repository and revisions.
 // Both the input repoRevs and the output dependencyRevs are a map from repository names to
 // `40-char commit hashes belonging to that repository.
-func (r *dependenciesAPI) Dependencies(ctx context.Context, repoRevs map[string][]string) (_ map[string][]string, err error) {
+func (r *dependenciesResolver) Dependencies(ctx context.Context, repoRevs map[string][]string) (_ map[string][]string, err error) {
 	depsStore := codeinteldbstore.NewDependencyInserter(r.db, r.listFunc, r.syncFunc)
 	defer func() {
 		if flushErr := depsStore.Flush(context.Background()); flushErr != nil {
