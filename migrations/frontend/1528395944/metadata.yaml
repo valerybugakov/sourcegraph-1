@@ -1,1 +1,2 @@
-name: 'squashed migrations'
+name: 'squashed migrations (unprivileged)'
+parent: 1528395943

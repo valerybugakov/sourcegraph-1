@@ -113,6 +113,7 @@ func hydrateMetadataFromFile(fs fs.FS, filepath string, definition Definition) (
 		Parent                  int    `yaml:"parent"`
 		Parents                 []int  `yaml:"parents"`
 		CreateIndexConcurrently bool   `yaml:"createIndexConcurrently"`
+		Privileged              bool   `yaml:"privileged"`
 	}
 	if err := yaml.Unmarshal(contents, &payload); err != nil {
 		return Definition{}, err

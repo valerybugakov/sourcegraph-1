@@ -11,6 +11,7 @@ type Definition struct {
 	Name                      string
 	UpQuery                   *sqlf.Query
 	DownQuery                 *sqlf.Query
+	Privileged                bool
 	Parents                   []int
 	IsCreateIndexConcurrently bool
 	IndexMetadata             *IndexMetadata
