@@ -85,8 +85,8 @@ func TestSearchResults(t *testing.T) {
 	searchVersions := []string{"V1", "V2"}
 
 	t.Run("repo: only", func(t *testing.T) {
-		mockDecodedViewerFinalSettings = &schema.Settings{}
-		defer func() { mockDecodedViewerFinalSettings = nil }()
+		MockDecodedViewerFinalSettings = &schema.Settings{}
+		defer func() { MockDecodedViewerFinalSettings = nil }()
 
 		repos := database.NewMockRepoStore()
 		repos.ListMinimalReposFunc.SetDefaultHook(func(ctx context.Context, opt database.ReposListOptions) ([]types.MinimalRepo, error) {
@@ -104,8 +104,8 @@ func TestSearchResults(t *testing.T) {
 	t.Run("multiple terms regexp", func(t *testing.T) {
 		t.Skip("Skipping because it's currently failing locally")
 
-		mockDecodedViewerFinalSettings = &schema.Settings{}
-		defer func() { mockDecodedViewerFinalSettings = nil }()
+		MockDecodedViewerFinalSettings = &schema.Settings{}
+		defer func() { MockDecodedViewerFinalSettings = nil }()
 
 		repos := database.NewMockRepoStore()
 		repos.ListMinimalReposFunc.SetDefaultReturn([]types.MinimalRepo{}, nil)
@@ -132,8 +132,8 @@ func TestSearchResults(t *testing.T) {
 	t.Run("multiple terms literal", func(t *testing.T) {
 		t.Skip("Skipping because it's currently failing locally")
 
-		mockDecodedViewerFinalSettings = &schema.Settings{}
-		defer func() { mockDecodedViewerFinalSettings = nil }()
+		MockDecodedViewerFinalSettings = &schema.Settings{}
+		defer func() { MockDecodedViewerFinalSettings = nil }()
 
 		repos := database.NewMockRepoStore()
 		repos.ListMinimalReposFunc.SetDefaultReturn([]types.MinimalRepo{}, nil)
@@ -291,14 +291,14 @@ func TestSearchResolver_DynamicFilters(t *testing.T) {
 		},
 	}
 
-	mockDecodedViewerFinalSettings = &schema.Settings{}
-	defer func() { mockDecodedViewerFinalSettings = nil }()
+	MockDecodedViewerFinalSettings = &schema.Settings{}
+	defer func() { MockDecodedViewerFinalSettings = nil }()
 
 	var expectedDynamicFilterStrs map[string]int
 	for _, test := range tests {
 		t.Run(test.descr, func(t *testing.T) {
 			for _, globbing := range []bool{true, false} {
-				mockDecodedViewerFinalSettings.SearchGlobbing = &globbing
+				MockDecodedViewerFinalSettings.SearchGlobbing = &globbing
 				actualDynamicFilters := (&SearchResultsResolver{db: database.NewMockDB(), Matches: test.searchResults}).DynamicFilters(context.Background())
 				actualDynamicFilterStrs := make(map[string]int)
 
