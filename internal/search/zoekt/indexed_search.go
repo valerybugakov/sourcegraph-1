@@ -15,6 +15,7 @@ import (
 
 	"github.com/sourcegraph/sourcegraph/internal/actor"
 	"github.com/sourcegraph/sourcegraph/internal/api"
+	"github.com/sourcegraph/sourcegraph/internal/database"
 	"github.com/sourcegraph/sourcegraph/internal/search"
 	"github.com/sourcegraph/sourcegraph/internal/search/backend"
 	"github.com/sourcegraph/sourcegraph/internal/search/filter"
@@ -420,6 +421,77 @@ func NewIndexedSubsetSearchRequest(ctx context.Context, repos []*search.Reposito
 	}, nil
 }
 
+func PartitionRepos(
+	ctx context.Context,
+	repos []*search.RepositoryRevisions,
+	zoektStreamer zoekt.Streamer,
+	typ search.IndexedRequestType,
+	useIndex query.YesNoOnly,
+	containsRefGlobs bool,
+	onMissing OnMissingRepoRevs,
+) (indexed *IndexedRepoRevs, unindexed []*search.RepositoryRevisions, err error) {
+	if zoektStreamer == nil {
+		if useIndex == query.Only {
+			return nil, nil, errors.Errorf("invalid index:%q (indexed search is not enabled)", useIndex)
+		}
+		return nil, limitUnindexedRepos(repos, maxUnindexedRepoRevSearchesPerQuery, onMissing), nil
+
+	}
+	// Fallback to Unindexed if the query contains valid ref-globs.
+	if containsRefGlobs {
+		return nil, limitUnindexedRepos(repos, maxUnindexedRepoRevSearchesPerQuery, onMissing), nil
+	}
+	// Fallback to Unindexed if index:no
+	if useIndex == query.No {
+		return nil, limitUnindexedRepos(repos, maxUnindexedRepoRevSearchesPerQuery, onMissing), nil
+	}
+
+	tr, ctx := trace.New(ctx, "PartitionRepos", string(typ))
+	// Only include indexes with symbol information if a symbol request.
+	var filter func(repo *zoekt.MinimalRepoListEntry) bool
+	if typ == search.SymbolRequest {
+		filter = func(repo *zoekt.MinimalRepoListEntry) bool {
+			return repo.HasSymbols
+		}
+	}
+
+	// Consult Zoekt to find out which repository revisions can be searched.
+	ctx, cancel := context.WithTimeout(ctx, time.Minute)
+	defer cancel()
+	list, err := zoektStreamer.List(ctx, &zoektquery.Const{Value: true}, &zoekt.ListOptions{Minimal: true})
+	if err != nil {
+		if ctx.Err() == nil {
+			// Only hard fail if the user specified index:only
+			if useIndex == query.Only {
+				return nil, nil, errors.New("index:only failed since indexed search is not available yet")
+			}
+
+			log15.Warn("zoektIndexedRepos failed", "error", err)
+		}
+
+		unindexedRepos := limitUnindexedRepos(repos, maxUnindexedRepoRevSearchesPerQuery, onMissing)
+		return nil, unindexedRepos, ctx.Err()
+	}
+
+	tr.LogFields(log.Int("all_indexed_set.size", len(list.Minimal)))
+
+	// Split based on indexed vs unindexed
+	indexed, searcherRepos := zoektIndexedRepos(list.Minimal, repos, filter)
+
+	tr.LogFields(
+		log.Int("indexed.size", len(indexed.repoRevs)),
+		log.Int("searcher_repos.size", len(searcherRepos)),
+	)
+
+	// Disable unindexed search
+	if useIndex == query.Only {
+		searcherRepos = limitUnindexedRepos(searcherRepos, 0, onMissing)
+	}
+
+	unindexed = limitUnindexedRepos(searcherRepos, maxUnindexedRepoRevSearchesPerQuery, onMissing)
+	return indexed, unindexed, nil
+}
+
 func DoZoektSearchGlobal(ctx context.Context, args *search.ZoektParameters, c streaming.Sender) error {
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
@@ -729,4 +801,88 @@ func limitUnindexedRepos(unindexed []*search.RepositoryRevisions, limit int, onM
 	}
 
 	return unindexed
+}
+
+type ZoektRepoSubsetSearch struct {
+	Repos          *IndexedRepoRevs // the set of indexed repository revisions to search.
+	Query          zoektquery.Q
+	Typ            search.IndexedRequestType
+	FileMatchLimit int32
+	Select         filter.SelectPath
+	Zoekt          zoekt.Streamer
+	Since          func(time.Time) time.Duration // since if non-nil will be used instead of time.Since. For tests
+}
+
+// ZoektSearch is a job that searches repositories using zoekt.
+func (z *ZoektRepoSubsetSearch) Run(ctx context.Context, _ database.DB, stream streaming.Sender) (*search.Alert, error) {
+	if z.Repos == nil {
+		return nil, nil
+	}
+	if len(z.Repos.repoRevs) == 0 {
+		return nil, nil
+	}
+
+	since := time.Since
+	if z.Since != nil {
+		since = z.Since
+	}
+
+	ctx, cancel := context.WithCancel(ctx)
+	defer cancel()
+
+	brs := make([]zoektquery.BranchRepos, 0, len(z.Repos.branchRepos))
+	for _, br := range z.Repos.branchRepos {
+		brs = append(brs, *br)
+	}
+
+	finalQuery := zoektquery.NewAnd(&zoektquery.BranchesRepos{List: brs}, z.Query)
+
+	k := ResultCountFactor(len(z.Repos.repoRevs), z.FileMatchLimit, false)
+	searchOpts := SearchOpts(ctx, k, z.FileMatchLimit, z.Select)
+
+	// Start event stream.
+	t0 := time.Now()
+
+	if deadline, ok := ctx.Deadline(); ok {
+		// If the user manually specified a timeout, allow zoekt to use all of the remaining timeout.
+		searchOpts.MaxWallTime = time.Until(deadline)
+		if searchOpts.MaxWallTime < 0 {
+			return nil, ctx.Err()
+		}
+		// We don't want our context's deadline to cut off zoekt so that we can get the results
+		// found before the deadline.
+		//
+		// We'll create a new context that gets cancelled if the other context is cancelled for any
+		// reason other than the deadline being exceeded. This essentially means the deadline for the new context
+		// will be `deadline + time for zoekt to cancel + network latency`.
+		var cancel context.CancelFunc
+		ctx, cancel = contextWithoutDeadline(ctx)
+		defer cancel()
+	}
+
+	foundResults := atomic.Bool{}
+	err := z.Zoekt.StreamSearch(ctx, finalQuery, &searchOpts, backend.ZoektStreamFunc(func(event *zoekt.SearchResult) {
+		foundResults.CAS(false, event.FileCount != 0 || event.MatchCount != 0)
+		sendMatches(event, z.Repos.getRepoInputRev, z.Typ, z.Select, stream)
+	}))
+	if err != nil {
+		return nil, err
+	}
+
+	mkStatusMap := func(mask search.RepoStatus) search.RepoStatusMap {
+		var statusMap search.RepoStatusMap
+		for _, r := range z.Repos.repoRevs {
+			statusMap.Update(r.Repo.ID, mask)
+		}
+		return statusMap
+	}
+
+	if !foundResults.Load() && since(t0) >= searchOpts.MaxWallTime {
+		stream.Send(streaming.SearchEvent{Stats: streaming.Stats{Status: mkStatusMap(search.RepoStatusTimedout)}})
+	}
+	return nil, nil
+}
+
+func (*ZoektRepoSubsetSearch) Name() string {
+	return "ZoektRepoSubset"
 }
