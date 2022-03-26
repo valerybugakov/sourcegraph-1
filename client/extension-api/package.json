@@ -130,7 +130,7 @@
   "scripts": {
     "eslint": "eslint 'src/*.[jt]s?(x)'",
     "docs": "typedoc",
-    "prepublishOnly": "yarn run eslint && yarn run docs"
+    "prepublishOnly": "pnpm run eslint && pnpm run docs"
   },
   "peerDependencies": {
     "graphql": "^15.4.0"

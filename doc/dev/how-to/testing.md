@@ -262,7 +262,7 @@ There's a GitHub test token in `../dev-private/enterprise/dev/external-services-
 
 This will open Chromium, add a code host, clone repositories, and execute the e2e tests.
 
-For regression tests, you can also run tests selectively with a command like `yarn run test:regression:search` in the `web/` directory, which runs the tests for search functionality.
+For regression tests, you can also run tests selectively with a command like `pnpm runtest:regression:search` in the `web/` directory, which runs the tests for search functionality.
 
 #### Writing end-to-end tests
 

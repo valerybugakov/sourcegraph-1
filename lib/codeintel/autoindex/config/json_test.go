@@ -13,7 +13,7 @@ const jsonTestInput = `
 			"root": "/",
 			"image": "node:12",
 			"commands": [
-				"yarn install --immutable --non-interactive",
+				"pnpm install --immutable --non-interactive",
 			],
 		}
 	],
@@ -50,7 +50,7 @@ func TestUnmarshalJSON(t *testing.T) {
 			{
 				Root:     "/",
 				Image:    "node:12",
-				Commands: []string{"yarn install --immutable --non-interactive"},
+				Commands: []string{"pnpm install --immutable --non-interactive"},
 			},
 		},
 		IndexJobs: []IndexJob{

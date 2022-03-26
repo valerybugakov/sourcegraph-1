@@ -29,7 +29,7 @@ const {
 const reactVisibilitySensorPath = resolve.sync(__dirname, 'react-visibility-sensor')
 
 if (!reactVisibilitySensorPath) {
-  throw new Error('react-visibility-sensor package is not resolved locally! yarn install is required')
+  throw new Error('react-visibility-sensor package is not resolved locally! pnpm install is required')
 }
 
 const { getHTMLWebpackPlugins } = require('./dev/webpack/get-html-webpack-plugins')
@@ -202,6 +202,12 @@ const config = {
   },
   module: {
     rules: [
+      {
+        test: /\.m?js/,
+        resolve: {
+          fullySpecified: false,
+        },
+      },
       // Run hot-loading-related Babel plugins on our application code only (because they'd be
       // slow to run on all JavaScript code).
       {

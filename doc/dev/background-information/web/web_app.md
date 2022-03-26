@@ -55,7 +55,7 @@ To install it, [see the instructions](../../setup/quickstart.md).
 3. Regenerate GraphQL schema, Typescript types for GraphQL operations and CSS Modules.
 
     ```sh
-    yarn generate
+    pnpm generate
     ```
 
     To regenerate on file change:
@@ -131,7 +131,7 @@ If you don't do this (and just use a normal `import`), it will still work, but i
 ## Formatting
 
 We use [Prettier](https://github.com/prettier/prettier) so you never have to worry about how to format your code.
-`yarn run prettier` will check & autoformat all code.
+`pnpm runprettier` will check & autoformat all code.
 
 ## Tests
 

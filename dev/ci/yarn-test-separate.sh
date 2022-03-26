@@ -3,13 +3,13 @@
 set -e
 
 echo "--- yarn in root"
-# mutex is necessary since CI runs various yarn installs in parallel
-yarn install
+# mutex is necessary since CI runs various pnpm installs in parallel
+pnpm install
 
 cd "$1"
 echo "--- yarn"
-# mutex is necessary since CI runs various yarn installs in parallel
-yarn install
+# mutex is necessary since CI runs various pnpm installs in parallel
+pnpm install
 
 echo "--- test"
 

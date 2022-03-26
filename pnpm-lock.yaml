@@ -7,7 +7,6 @@ overrides:
   prettier: 2.2.1
   cssnano: 4.1.10
   puppeteer: 12.0.1
-  core-js: 3.15.2
   webpack: '5'
 
 importers:
@@ -59,8 +58,8 @@ importers:
       '@sourcegraph/codeintellify': workspace:^
       '@sourcegraph/common': workspace:^
       '@sourcegraph/eslint-config': ^0.26.0
-      '@sourcegraph/eslint-plugin-sourcegraph': 1.0.0
-      '@sourcegraph/eslint-plugin-wildcard': 1.0.0
+      '@sourcegraph/eslint-plugin-sourcegraph': workspace:^
+      '@sourcegraph/eslint-plugin-wildcard': workspace:^
       '@sourcegraph/extension-api-classes': ^1.1.0
       '@sourcegraph/extension-api-types': workspace:^
       '@sourcegraph/http-client': workspace:^
@@ -203,7 +202,7 @@ importers:
       compression-webpack-plugin: ^9.0.0
       connect-history-api-fallback: ^1.6.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-env: ^7.0.2
       cross-fetch: ^3.1.4
       css-loader: ^5.2.6
@@ -760,14 +759,15 @@ importers:
       '@sourcegraph/codeintellify': workspace:^
       '@sourcegraph/common': workspace:^
       '@sourcegraph/eslint-config': ^0.26.0
-      '@sourcegraph/eslint-plugin-sourcegraph': 1.0.0
-      '@sourcegraph/eslint-plugin-wildcard': 1.0.0
+      '@sourcegraph/eslint-plugin-sourcegraph': workspace:^
+      '@sourcegraph/eslint-plugin-wildcard': workspace:^
       '@sourcegraph/extension-api-classes': ^1.1.0
       '@sourcegraph/extension-api-types': workspace:^
       '@sourcegraph/prettierrc': ^3.0.3
       '@sourcegraph/shared': workspace:^
       '@sourcegraph/storybook': workspace:^
       '@sourcegraph/stylelint-config': ^1.4.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': workspace:^1.0.0
       '@sourcegraph/tsconfig': ^4.0.1
       '@sourcegraph/web': workspace:^
       '@sourcegraph/wildcard': workspace:^
@@ -893,7 +893,7 @@ importers:
       compression-webpack-plugin: ^9.0.0
       connect-history-api-fallback: ^1.6.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-env: ^7.0.2
       cross-fetch: ^3.1.4
       css-loader: ^5.2.6
@@ -1188,6 +1188,7 @@ importers:
       '@sourcegraph/eslint-plugin-wildcard': link:../eslint-plugin-wildcard
       '@sourcegraph/prettierrc': 3.0.3
       '@sourcegraph/stylelint-config': 1.4.0_postcss@8.4.6+stylelint@14.3.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': link:../stylelint-plugin-sourcegraph
       '@sourcegraph/tsconfig': 4.0.1
       '@storybook/addon-a11y': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
       '@storybook/addon-actions': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
@@ -1425,14 +1426,15 @@ importers:
       '@sourcegraph/codeintellify': workspace:^
       '@sourcegraph/common': workspace:^
       '@sourcegraph/eslint-config': ^0.26.0
-      '@sourcegraph/eslint-plugin-sourcegraph': 1.0.0
-      '@sourcegraph/eslint-plugin-wildcard': 1.0.0
+      '@sourcegraph/eslint-plugin-sourcegraph': workspace:^
+      '@sourcegraph/eslint-plugin-wildcard': workspace:^
       '@sourcegraph/extension-api-classes': ^1.1.0
       '@sourcegraph/extension-api-types': workspace:^
       '@sourcegraph/http-client': workspace:^
       '@sourcegraph/prettierrc': ^3.0.3
       '@sourcegraph/shared': workspace:^
       '@sourcegraph/stylelint-config': ^1.4.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': workspace:^1.0.0
       '@sourcegraph/tsconfig': ^4.0.1
       '@sourcegraph/wildcard': workspace:^
       '@sqs/jsonc-parser': ^1.0.3
@@ -1557,7 +1559,7 @@ importers:
       compression-webpack-plugin: ^9.0.0
       connect-history-api-fallback: ^1.6.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-env: ^7.0.2
       cross-fetch: ^3.1.4
       css-loader: ^5.2.6
@@ -1855,6 +1857,7 @@ importers:
       '@sourcegraph/eslint-plugin-wildcard': link:../eslint-plugin-wildcard
       '@sourcegraph/prettierrc': 3.0.3
       '@sourcegraph/stylelint-config': 1.4.0_postcss@8.4.6+stylelint@14.3.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': link:../stylelint-plugin-sourcegraph
       '@sourcegraph/tsconfig': 4.0.1
       '@storybook/addon-a11y': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
       '@storybook/addon-actions': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
@@ -2087,11 +2090,12 @@ importers:
       '@sentry/browser': ^6.13.2
       '@slimsag/react-shortcuts': ^1.2.1
       '@sourcegraph/eslint-config': ^0.26.0
-      '@sourcegraph/eslint-plugin-sourcegraph': 1.0.0
-      '@sourcegraph/eslint-plugin-wildcard': 1.0.0
+      '@sourcegraph/eslint-plugin-sourcegraph': workspace:^
+      '@sourcegraph/eslint-plugin-wildcard': workspace:^
       '@sourcegraph/extension-api-classes': ^1.1.0
       '@sourcegraph/prettierrc': ^3.0.3
       '@sourcegraph/stylelint-config': ^1.4.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': workspace:^1.0.0
       '@sourcegraph/tsconfig': ^4.0.1
       '@sqs/jsonc-parser': ^1.0.3
       '@storybook/addon-a11y': ^6.3.12
@@ -2215,7 +2219,7 @@ importers:
       compression-webpack-plugin: ^9.0.0
       connect-history-api-fallback: ^1.6.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-env: ^7.0.2
       cross-fetch: ^3.1.4
       css-loader: ^5.2.6
@@ -2499,6 +2503,7 @@ importers:
       '@sourcegraph/eslint-plugin-wildcard': link:../eslint-plugin-wildcard
       '@sourcegraph/prettierrc': 3.0.3
       '@sourcegraph/stylelint-config': 1.4.0_postcss@8.4.6+stylelint@14.3.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': link:../stylelint-plugin-sourcegraph
       '@sourcegraph/tsconfig': 4.0.1
       '@storybook/addon-a11y': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
       '@storybook/addon-actions': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
@@ -2732,12 +2737,13 @@ importers:
       '@slimsag/react-shortcuts': ^1.2.1
       '@sourcegraph/common': workspace:^
       '@sourcegraph/eslint-config': ^0.26.0
-      '@sourcegraph/eslint-plugin-sourcegraph': 1.0.0
-      '@sourcegraph/eslint-plugin-wildcard': 1.0.0
+      '@sourcegraph/eslint-plugin-sourcegraph': workspace:^
+      '@sourcegraph/eslint-plugin-wildcard': workspace:^
       '@sourcegraph/extension-api-classes': ^1.1.0
       '@sourcegraph/extension-api-types': workspace:^
       '@sourcegraph/prettierrc': ^3.0.3
       '@sourcegraph/stylelint-config': ^1.4.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': workspace:^1.0.0
       '@sourcegraph/tsconfig': ^4.0.1
       '@sqs/jsonc-parser': ^1.0.3
       '@storybook/addon-a11y': ^6.3.12
@@ -2861,7 +2867,7 @@ importers:
       compression-webpack-plugin: ^9.0.0
       connect-history-api-fallback: ^1.6.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-env: ^7.0.2
       cross-fetch: ^3.1.4
       css-loader: ^5.2.6
@@ -3151,6 +3157,7 @@ importers:
       '@sourcegraph/eslint-plugin-wildcard': link:../eslint-plugin-wildcard
       '@sourcegraph/prettierrc': 3.0.3
       '@sourcegraph/stylelint-config': 1.4.0_postcss@8.4.6+stylelint@14.3.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': link:../stylelint-plugin-sourcegraph
       '@sourcegraph/tsconfig': 4.0.1
       '@storybook/addon-a11y': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
       '@storybook/addon-actions': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
@@ -3384,12 +3391,13 @@ importers:
       '@sentry/browser': ^6.13.2
       '@slimsag/react-shortcuts': ^1.2.1
       '@sourcegraph/eslint-config': ^0.26.0
-      '@sourcegraph/eslint-plugin-sourcegraph': 1.0.0
-      '@sourcegraph/eslint-plugin-wildcard': 1.0.0
+      '@sourcegraph/eslint-plugin-sourcegraph': workspace:^
+      '@sourcegraph/eslint-plugin-wildcard': workspace:^
       '@sourcegraph/extension-api-classes': ^1.1.0
       '@sourcegraph/extension-api-types': workspace:^
       '@sourcegraph/prettierrc': ^3.0.3
       '@sourcegraph/stylelint-config': ^1.4.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': workspace:^1.0.0
       '@sourcegraph/tsconfig': ^4.0.1
       '@sqs/jsonc-parser': ^1.0.3
       '@storybook/addon-a11y': ^6.3.12
@@ -3513,7 +3521,7 @@ importers:
       compression-webpack-plugin: ^9.0.0
       connect-history-api-fallback: ^1.6.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-env: ^7.0.2
       cross-fetch: ^3.1.4
       css-loader: ^5.2.6
@@ -3800,6 +3808,7 @@ importers:
       '@sourcegraph/eslint-plugin-wildcard': link:../eslint-plugin-wildcard
       '@sourcegraph/prettierrc': 3.0.3
       '@sourcegraph/stylelint-config': 1.4.0_postcss@8.4.6+stylelint@14.3.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': link:../stylelint-plugin-sourcegraph
       '@sourcegraph/tsconfig': 4.0.1
       '@storybook/addon-a11y': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
       '@storybook/addon-actions': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
@@ -3994,6 +4003,7 @@ importers:
 
   client/eslint-plugin-sourcegraph:
     specifiers:
+      '@sourcegraph/stylelint-plugin-sourcegraph': workspace:^1.0.0
       '@types/history': 4.7.11
       '@types/testing-library__react-hooks': ^3.4.1
       eslint: ^8.9.0
@@ -4003,16 +4013,19 @@ importers:
       eslint: 8.9.0
       requireindex: 1.1.0
     devDependencies:
+      '@sourcegraph/stylelint-plugin-sourcegraph': link:../stylelint-plugin-sourcegraph
       '@types/history': 4.7.11
       '@types/testing-library__react-hooks': 3.4.1
       react-test-renderer: 16.14.0_react@16.14.0
 
   client/eslint-plugin-wildcard:
     specifiers:
+      '@sourcegraph/stylelint-plugin-sourcegraph': workspace:^1.0.0
       '@types/history': 4.7.11
       '@types/testing-library__react-hooks': ^3.4.1
       react-test-renderer: ^16.14.0
     devDependencies:
+      '@sourcegraph/stylelint-plugin-sourcegraph': link:../stylelint-plugin-sourcegraph
       '@types/history': 4.7.11
       '@types/testing-library__react-hooks': 3.4.1
       react-test-renderer: 16.14.0_react@16.14.0
@@ -4054,7 +4067,7 @@ importers:
       classnames: ^2.2.6
       comlink: ^4.3.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-fetch: ^3.1.4
       d3-axis: ^1.0.12
       d3-format: ^2.0.0
@@ -4269,11 +4282,12 @@ importers:
       '@sentry/browser': ^6.13.2
       '@slimsag/react-shortcuts': ^1.2.1
       '@sourcegraph/eslint-config': ^0.26.0
-      '@sourcegraph/eslint-plugin-sourcegraph': 1.0.0
-      '@sourcegraph/eslint-plugin-wildcard': 1.0.0
+      '@sourcegraph/eslint-plugin-sourcegraph': workspace:^
+      '@sourcegraph/eslint-plugin-wildcard': workspace:^
       '@sourcegraph/extension-api-classes': ^1.1.0
       '@sourcegraph/prettierrc': ^3.0.3
       '@sourcegraph/stylelint-config': ^1.4.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': workspace:^1.0.0
       '@sourcegraph/tsconfig': ^4.0.1
       '@sqs/jsonc-parser': ^1.0.3
       '@storybook/addon-a11y': ^6.3.12
@@ -4397,7 +4411,7 @@ importers:
       compression-webpack-plugin: ^9.0.0
       connect-history-api-fallback: ^1.6.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-env: ^7.0.2
       cross-fetch: ^3.1.4
       css-loader: ^5.2.6
@@ -4683,6 +4697,7 @@ importers:
       '@sourcegraph/eslint-plugin-wildcard': link:../eslint-plugin-wildcard
       '@sourcegraph/prettierrc': 3.0.3
       '@sourcegraph/stylelint-config': 1.4.0_postcss@8.4.6+stylelint@14.3.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': link:../stylelint-plugin-sourcegraph
       '@sourcegraph/tsconfig': 4.0.1
       '@storybook/addon-a11y': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
       '@storybook/addon-actions': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
@@ -4917,12 +4932,13 @@ importers:
       '@slimsag/react-shortcuts': ^1.2.1
       '@sourcegraph/common': workspace:^
       '@sourcegraph/eslint-config': ^0.26.0
-      '@sourcegraph/eslint-plugin-sourcegraph': 1.0.0
-      '@sourcegraph/eslint-plugin-wildcard': 1.0.0
+      '@sourcegraph/eslint-plugin-sourcegraph': workspace:^
+      '@sourcegraph/eslint-plugin-wildcard': workspace:^
       '@sourcegraph/extension-api-classes': ^1.1.0
       '@sourcegraph/prettierrc': ^3.0.3
       '@sourcegraph/shared': workspace:^
       '@sourcegraph/stylelint-config': ^1.4.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': workspace:^1.0.0
       '@sourcegraph/tsconfig': ^4.0.1
       '@sqs/jsonc-parser': ^1.0.3
       '@storybook/addon-a11y': ^6.3.12
@@ -5046,7 +5062,7 @@ importers:
       compression-webpack-plugin: ^9.0.0
       connect-history-api-fallback: ^1.6.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-env: ^7.0.2
       cross-fetch: ^3.1.4
       css-loader: ^5.2.6
@@ -5334,6 +5350,7 @@ importers:
       '@sourcegraph/eslint-plugin-wildcard': link:../eslint-plugin-wildcard
       '@sourcegraph/prettierrc': 3.0.3
       '@sourcegraph/stylelint-config': 1.4.0_postcss@8.4.6+stylelint@14.3.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': link:../stylelint-plugin-sourcegraph
       '@sourcegraph/tsconfig': 4.0.1
       '@storybook/addon-a11y': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
       '@storybook/addon-actions': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
@@ -5568,13 +5585,14 @@ importers:
       '@slimsag/react-shortcuts': ^1.2.1
       '@sourcegraph/common': workspace:^
       '@sourcegraph/eslint-config': ^0.26.0
-      '@sourcegraph/eslint-plugin-sourcegraph': 1.0.0
-      '@sourcegraph/eslint-plugin-wildcard': 1.0.0
+      '@sourcegraph/eslint-plugin-sourcegraph': workspace:^
+      '@sourcegraph/eslint-plugin-wildcard': workspace:^
       '@sourcegraph/extension-api-classes': ^1.1.0
       '@sourcegraph/http-client': workspace:^
       '@sourcegraph/prettierrc': ^3.0.3
       '@sourcegraph/shared': workspace:^
       '@sourcegraph/stylelint-config': ^1.4.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': workspace:^1.0.0
       '@sourcegraph/tsconfig': ^4.0.1
       '@sqs/jsonc-parser': ^1.0.3
       '@storybook/addon-a11y': ^6.3.12
@@ -5698,7 +5716,7 @@ importers:
       compression-webpack-plugin: ^9.0.0
       connect-history-api-fallback: ^1.6.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-env: ^7.0.2
       cross-fetch: ^3.1.4
       css-loader: ^5.2.6
@@ -5989,6 +6007,7 @@ importers:
       '@sourcegraph/eslint-plugin-wildcard': link:../eslint-plugin-wildcard
       '@sourcegraph/prettierrc': 3.0.3
       '@sourcegraph/stylelint-config': 1.4.0_postcss@8.4.6+stylelint@14.3.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': link:../stylelint-plugin-sourcegraph
       '@sourcegraph/tsconfig': 4.0.1
       '@storybook/addon-a11y': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
       '@storybook/addon-actions': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
@@ -6224,13 +6243,14 @@ importers:
       '@sourcegraph/branded': workspace:^
       '@sourcegraph/common': workspace:^
       '@sourcegraph/eslint-config': ^0.26.0
-      '@sourcegraph/eslint-plugin-sourcegraph': 1.0.0
-      '@sourcegraph/eslint-plugin-wildcard': 1.0.0
+      '@sourcegraph/eslint-plugin-sourcegraph': workspace:^
+      '@sourcegraph/eslint-plugin-wildcard': workspace:^
       '@sourcegraph/extension-api-classes': ^1.1.0
       '@sourcegraph/prettierrc': ^3.0.3
       '@sourcegraph/search': workspace:^
       '@sourcegraph/shared': workspace:^
       '@sourcegraph/stylelint-config': ^1.4.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': workspace:^1.0.0
       '@sourcegraph/tsconfig': ^4.0.1
       '@sourcegraph/wildcard': workspace:^
       '@sqs/jsonc-parser': ^1.0.3
@@ -6355,7 +6375,7 @@ importers:
       compression-webpack-plugin: ^9.0.0
       connect-history-api-fallback: ^1.6.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-env: ^7.0.2
       cross-fetch: ^3.1.4
       css-loader: ^5.2.6
@@ -6648,6 +6668,7 @@ importers:
       '@sourcegraph/eslint-plugin-wildcard': link:../eslint-plugin-wildcard
       '@sourcegraph/prettierrc': 3.0.3
       '@sourcegraph/stylelint-config': 1.4.0_postcss@8.4.6+stylelint@14.3.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': link:../stylelint-plugin-sourcegraph
       '@sourcegraph/tsconfig': 4.0.1
       '@storybook/addon-a11y': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
       '@storybook/addon-actions': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
@@ -6843,6 +6864,7 @@ importers:
   client/shared:
     specifiers:
       '@apollo/client': 3.4.7
+      '@atlassian/aui': ^7.10.1
       '@babel/core': ^7.14.2
       '@babel/plugin-proposal-decorators': ^7.14.2
       '@babel/plugin-transform-typescript': ^7.13.0
@@ -6885,13 +6907,14 @@ importers:
       '@sourcegraph/codeintellify': workspace:^
       '@sourcegraph/common': workspace:^
       '@sourcegraph/eslint-config': ^0.26.0
-      '@sourcegraph/eslint-plugin-sourcegraph': 1.0.0
-      '@sourcegraph/eslint-plugin-wildcard': 1.0.0
+      '@sourcegraph/eslint-plugin-sourcegraph': workspace:^
+      '@sourcegraph/eslint-plugin-wildcard': workspace:^
       '@sourcegraph/extension-api-classes': ^1.1.0
       '@sourcegraph/extension-api-types': workspace:^
       '@sourcegraph/http-client': workspace:^
       '@sourcegraph/prettierrc': ^3.0.3
       '@sourcegraph/stylelint-config': ^1.4.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': workspace:^1.0.0
       '@sourcegraph/template-parser': workspace:^
       '@sourcegraph/tsconfig': ^4.0.1
       '@sourcegraph/web': workspace:^
@@ -7022,7 +7045,7 @@ importers:
       compression-webpack-plugin: ^9.0.0
       connect-history-api-fallback: ^1.6.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-env: ^7.0.2
       cross-fetch: ^3.1.4
       css-loader: ^5.2.6
@@ -7298,6 +7321,7 @@ importers:
       yaml-ast-parser: 0.0.43
       zustand: 3.6.9_react@16.14.0
     devDependencies:
+      '@atlassian/aui': 7.10.3
       '@babel/core': 7.14.2
       '@babel/plugin-proposal-decorators': 7.14.2_@babel+core@7.14.2
       '@babel/plugin-transform-typescript': 7.13.0_@babel+core@7.14.2
@@ -7330,6 +7354,7 @@ importers:
       '@sourcegraph/eslint-plugin-wildcard': link:../eslint-plugin-wildcard
       '@sourcegraph/prettierrc': 3.0.3
       '@sourcegraph/stylelint-config': 1.4.0_postcss@8.4.6+stylelint@14.3.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': link:../stylelint-plugin-sourcegraph
       '@sourcegraph/tsconfig': 4.0.1
       '@storybook/addon-a11y': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
       '@storybook/addon-actions': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
@@ -7574,13 +7599,14 @@ importers:
       '@slimsag/react-shortcuts': ^1.2.1
       '@sourcegraph/build-config': workspace:^
       '@sourcegraph/eslint-config': ^0.26.0
-      '@sourcegraph/eslint-plugin-sourcegraph': 1.0.0
-      '@sourcegraph/eslint-plugin-wildcard': 1.0.0
+      '@sourcegraph/eslint-plugin-sourcegraph': workspace:^
+      '@sourcegraph/eslint-plugin-wildcard': workspace:^
       '@sourcegraph/extension-api-classes': ^1.1.0
       '@sourcegraph/http-client': workspace:^
       '@sourcegraph/prettierrc': ^3.0.3
       '@sourcegraph/shared': workspace:^
       '@sourcegraph/stylelint-config': ^1.4.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': workspace:^1.0.0
       '@sourcegraph/tsconfig': ^4.0.1
       '@sourcegraph/wildcard': workspace:^
       '@sqs/jsonc-parser': ^1.0.3
@@ -7709,7 +7735,7 @@ importers:
       compression-webpack-plugin: ^9.0.0
       connect-history-api-fallback: ^1.6.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-env: ^7.0.2
       cross-fetch: ^3.1.4
       css-loader: ^5.2.6
@@ -7999,6 +8025,7 @@ importers:
       '@sourcegraph/eslint-plugin-wildcard': link:../eslint-plugin-wildcard
       '@sourcegraph/prettierrc': 3.0.3
       '@sourcegraph/stylelint-config': 1.4.0_postcss@8.4.6+stylelint@14.3.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': link:../stylelint-plugin-sourcegraph
       '@sourcegraph/tsconfig': 4.0.1
       '@storybook/addon-a11y': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
       '@storybook/addon-actions': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
@@ -8233,11 +8260,12 @@ importers:
       '@sentry/browser': ^6.13.2
       '@slimsag/react-shortcuts': ^1.2.1
       '@sourcegraph/eslint-config': ^0.26.0
-      '@sourcegraph/eslint-plugin-sourcegraph': 1.0.0
-      '@sourcegraph/eslint-plugin-wildcard': 1.0.0
+      '@sourcegraph/eslint-plugin-sourcegraph': workspace:^
+      '@sourcegraph/eslint-plugin-wildcard': workspace:^
       '@sourcegraph/extension-api-classes': ^1.1.0
       '@sourcegraph/prettierrc': ^3.0.3
       '@sourcegraph/stylelint-config': ^1.4.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': workspace:^1.0.0
       '@sourcegraph/tsconfig': ^4.0.1
       '@sqs/jsonc-parser': ^1.0.3
       '@storybook/addon-a11y': ^6.3.12
@@ -8361,7 +8389,7 @@ importers:
       compression-webpack-plugin: ^9.0.0
       connect-history-api-fallback: ^1.6.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-env: ^7.0.2
       cross-fetch: ^3.1.4
       css-loader: ^5.2.6
@@ -8647,6 +8675,7 @@ importers:
       '@sourcegraph/eslint-plugin-wildcard': link:../eslint-plugin-wildcard
       '@sourcegraph/prettierrc': 3.0.3
       '@sourcegraph/stylelint-config': 1.4.0_postcss@8.4.6+stylelint@14.3.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': 'link:'
       '@sourcegraph/tsconfig': 4.0.1
       '@storybook/addon-a11y': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
       '@storybook/addon-actions': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
@@ -8880,11 +8909,12 @@ importers:
       '@sentry/browser': ^6.13.2
       '@slimsag/react-shortcuts': ^1.2.1
       '@sourcegraph/eslint-config': ^0.26.0
-      '@sourcegraph/eslint-plugin-sourcegraph': 1.0.0
-      '@sourcegraph/eslint-plugin-wildcard': 1.0.0
+      '@sourcegraph/eslint-plugin-sourcegraph': workspace:^
+      '@sourcegraph/eslint-plugin-wildcard': workspace:^
       '@sourcegraph/extension-api-classes': ^1.1.0
       '@sourcegraph/prettierrc': ^3.0.3
       '@sourcegraph/stylelint-config': ^1.4.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': workspace:^1.0.0
       '@sourcegraph/tsconfig': ^4.0.1
       '@sqs/jsonc-parser': ^1.0.3
       '@storybook/addon-a11y': ^6.3.12
@@ -9008,7 +9038,7 @@ importers:
       compression-webpack-plugin: ^9.0.0
       connect-history-api-fallback: ^1.6.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-env: ^7.0.2
       cross-fetch: ^3.1.4
       css-loader: ^5.2.6
@@ -9294,6 +9324,7 @@ importers:
       '@sourcegraph/eslint-plugin-wildcard': link:../eslint-plugin-wildcard
       '@sourcegraph/prettierrc': 3.0.3
       '@sourcegraph/stylelint-config': 1.4.0_postcss@8.4.6+stylelint@14.3.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': link:../stylelint-plugin-sourcegraph
       '@sourcegraph/tsconfig': 4.0.1
       '@storybook/addon-a11y': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
       '@storybook/addon-actions': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
@@ -9529,8 +9560,8 @@ importers:
       '@sourcegraph/branded': workspace:^
       '@sourcegraph/common': workspace:^
       '@sourcegraph/eslint-config': ^0.26.0
-      '@sourcegraph/eslint-plugin-sourcegraph': 1.0.0
-      '@sourcegraph/eslint-plugin-wildcard': 1.0.0
+      '@sourcegraph/eslint-plugin-sourcegraph': workspace:^
+      '@sourcegraph/eslint-plugin-wildcard': workspace:^
       '@sourcegraph/extension-api-classes': ^1.1.0
       '@sourcegraph/prettierrc': ^3.0.3
       '@sourcegraph/shared': workspace:^
@@ -9659,7 +9690,7 @@ importers:
       compression-webpack-plugin: ^9.0.0
       connect-history-api-fallback: ^1.6.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-env: ^7.0.2
       cross-fetch: ^3.1.4
       css-loader: ^5.2.6
@@ -10190,8 +10221,8 @@ importers:
       '@sourcegraph/codeintellify': workspace:^
       '@sourcegraph/common': workspace:^
       '@sourcegraph/eslint-config': ^0.26.0
-      '@sourcegraph/eslint-plugin-sourcegraph': 1.0.0
-      '@sourcegraph/eslint-plugin-wildcard': 1.0.0
+      '@sourcegraph/eslint-plugin-sourcegraph': workspace:^
+      '@sourcegraph/eslint-plugin-wildcard': workspace:^
       '@sourcegraph/extension-api-classes': ^1.1.0
       '@sourcegraph/extension-api-types': workspace:^
       '@sourcegraph/http-client': workspace:^
@@ -10201,7 +10232,9 @@ importers:
       '@sourcegraph/shared': workspace:^
       '@sourcegraph/storybook': workspace:^
       '@sourcegraph/stylelint-config': ^1.4.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': workspace:^1.0.0
       '@sourcegraph/tsconfig': ^4.0.1
+      '@sourcegraph/web': workspace:^
       '@sourcegraph/wildcard': workspace:^
       '@sqs/jsonc-parser': ^1.0.3
       '@storybook/addon-a11y': ^6.3.12
@@ -10334,7 +10367,7 @@ importers:
       compression-webpack-plugin: ^9.0.0
       connect-history-api-fallback: ^1.6.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-env: ^7.0.2
       cross-fetch: ^3.1.4
       css-loader: ^5.2.6
@@ -10420,6 +10453,7 @@ importers:
       postcss-modules: ^4.2.2
       prettier: 2.2.1
       pretty-bytes: ^5.3.0
+      process: ^0.11.10
       protoc-gen-ts: 0.8.1
       punycode: ^2.1.1
       puppeteer: 12.0.1
@@ -10520,6 +10554,7 @@ importers:
       '@sourcegraph/search-ui': link:../search-ui
       '@sourcegraph/shared': link:../shared
       '@sourcegraph/storybook': link:../storybook
+      '@sourcegraph/web': 'link:'
       '@sourcegraph/wildcard': link:../wildcard
       '@sqs/jsonc-parser': 1.0.3
       '@types/svgo': 2.6.0
@@ -10654,6 +10689,7 @@ importers:
       '@sourcegraph/eslint-plugin-wildcard': link:../eslint-plugin-wildcard
       '@sourcegraph/prettierrc': 3.0.3
       '@sourcegraph/stylelint-config': 1.4.0_postcss@8.4.6+stylelint@14.3.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': link:../stylelint-plugin-sourcegraph
       '@sourcegraph/tsconfig': 4.0.1
       '@storybook/addon-a11y': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
       '@storybook/addon-actions': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
@@ -10811,6 +10847,7 @@ importers:
       postcss-loader: 6.1.1_postcss@8.4.6+webpack@5.45.1
       postcss-modules: 4.2.2_postcss@8.4.6
       prettier: 2.2.1
+      process: 0.11.10
       protoc-gen-ts: 0.8.1_028526f3e16280d0dbdd67fcb32d5b1c
       puppeteer: 12.0.1
       puppeteer-firefox: 0.5.1
@@ -10892,13 +10929,14 @@ importers:
       '@sourcegraph/branded': workspace:^
       '@sourcegraph/common': workspace:^
       '@sourcegraph/eslint-config': ^0.26.0
-      '@sourcegraph/eslint-plugin-sourcegraph': 1.0.0
-      '@sourcegraph/eslint-plugin-wildcard': 1.0.0
+      '@sourcegraph/eslint-plugin-sourcegraph': workspace:^
+      '@sourcegraph/eslint-plugin-wildcard': workspace:^
       '@sourcegraph/extension-api-classes': ^1.1.0
       '@sourcegraph/prettierrc': ^3.0.3
       '@sourcegraph/shared': workspace:^
       '@sourcegraph/storybook': workspace:^
       '@sourcegraph/stylelint-config': ^1.4.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': workspace:^1.0.0
       '@sourcegraph/tsconfig': ^4.0.1
       '@sourcegraph/web': workspace:^
       '@sqs/jsonc-parser': ^1.0.3
@@ -11023,7 +11061,7 @@ importers:
       compression-webpack-plugin: ^9.0.0
       connect-history-api-fallback: ^1.6.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-env: ^7.0.2
       cross-fetch: ^3.1.4
       css-loader: ^5.2.6
@@ -11319,6 +11357,7 @@ importers:
       '@sourcegraph/eslint-plugin-wildcard': link:../eslint-plugin-wildcard
       '@sourcegraph/prettierrc': 3.0.3
       '@sourcegraph/stylelint-config': 1.4.0_postcss@8.4.6+stylelint@14.3.0
+      '@sourcegraph/stylelint-plugin-sourcegraph': link:../stylelint-plugin-sourcegraph
       '@sourcegraph/tsconfig': 4.0.1
       '@storybook/addon-a11y': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
       '@storybook/addon-actions': 6.3.12_6858ce4ab93495e2d5d1ca7c99fffbae
@@ -11552,8 +11591,8 @@ importers:
       '@sentry/browser': ^6.13.2
       '@slimsag/react-shortcuts': ^1.2.1
       '@sourcegraph/eslint-config': ^0.26.0
-      '@sourcegraph/eslint-plugin-sourcegraph': 1.0.0
-      '@sourcegraph/eslint-plugin-wildcard': 1.0.0
+      '@sourcegraph/eslint-plugin-sourcegraph': workspace:^
+      '@sourcegraph/eslint-plugin-wildcard': workspace:^
       '@sourcegraph/extension-api-classes': ^1.1.0
       '@sourcegraph/prettierrc': ^3.0.3
       '@sourcegraph/stylelint-config': ^1.4.0
@@ -11680,7 +11719,7 @@ importers:
       compression-webpack-plugin: ^9.0.0
       connect-history-api-fallback: ^1.6.0
       copy-to-clipboard: ^3.3.1
-      core-js: 3.15.2
+      core-js: ^3.8.2
       cross-env: ^7.0.2
       cross-fetch: ^3.1.4
       css-loader: ^5.2.6
@@ -12231,6 +12270,28 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       tslib: 2.0.3
+    dev: true
+
+  /@atlassian/aui/7.10.3:
+    resolution: {integrity: sha512-lrttmcU6SAXQn91p0nMVTk7tcmtpV5hpqhhyywqQezPUTkd3LpOPL04Ap1TJhp9LKvMZ9GzOi+jCmgdxoiSD1w==}
+    engines: {node: ^6 || >=8, yarn: ^1.1.0}
+    peerDependencies:
+      jquery: ^1.7.2 || ^1.8.3 || ^2
+    dependencies:
+      backbone: 1.1.2
+      clipboard-js: 0.2.0
+      css.escape: 1.5.0
+      fancy-file-input: 2.0.3
+      object-assign: 4.0.1
+      skatejs: 0.13.17
+      skatejs-template-html: 0.0.0
+      tether: github.com/atlassian/tether/bf85430889b5231fbe5b383416cce6281225bf06
+      trim-extra-html-whitespace: 1.3.0
+      underscore: 1.13.1
+      webcomponents.js: 0.7.20
+      yarn-version-bump: 0.0.4
+    transitivePeerDependencies:
+      - yarn
     dev: true
 
   /@axe-core/puppeteer/4.2.1_puppeteer@12.0.1:
@@ -13420,7 +13481,7 @@ packages:
     resolution: {integrity: sha512-X0pi0V6gxLi6lFZpGmeNa4zxtwEmCs42isWLNjZZDE0Y8yVfgu0T2OAHlzBbdYlqbW/YXVvoBHpATEM+goCj8g==}
     deprecated: 🚨 This package has been deprecated in favor of separate inclusion of a polyfill and regenerator-runtime (when needed). See the @babel/polyfill docs (https://babeljs.io/docs/en/babel-polyfill) for more information.
     dependencies:
-      core-js: 3.15.2
+      core-js: 2.6.12
       regenerator-runtime: 0.13.7
     dev: true
 
@@ -19850,7 +19911,7 @@ packages:
     resolution: {integrity: sha512-t9u0dU0rJN4ML+uxgN6VM2Z4H5jWIYm0w8LsZLzMJaQsgL3IJNbxHgmbWDvJAwspyHpDFuzUaUFh4c05UB4+6g==}
     engines: {node: '>=6.0.0'}
     dependencies:
-      pvutils: 1.1.2
+      pvutils: 1.1.3
     dev: true
 
   /assert-plus/1.0.0:
@@ -20370,6 +20431,12 @@ packages:
       now-and-later: 2.0.0
     dev: true
 
+  /backbone/1.1.2:
+    resolution: {integrity: sha1-wsBMZr+HJo+4LBd6zr7/fTe6by0=}
+    dependencies:
+      underscore: 1.13.1
+    dev: true
+
   /backo2/1.0.2:
     resolution: {integrity: sha1-MasayLEpNjRj41s+u2n038+6eUc=}
 
@@ -20874,6 +20941,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /camelcase/4.1.0:
+    resolution: {integrity: sha1-1UVjW+HjPFQmScaRc+Xeas+uNN0=}
+    engines: {node: '>=4'}
+    dev: true
+
   /camelcase/5.3.1:
     resolution: {integrity: sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==}
     engines: {node: '>=6'}
@@ -21266,6 +21338,11 @@ packages:
     engines: {node: '>= 10'}
     dev: true
 
+  /clipboard-js/0.2.0:
+    resolution: {integrity: sha1-uhpgksy85DzMmBdAdzdpLkMvQJs=}
+    deprecated: Please migrate to https://github.com/lgarron/clipboard-polyfill
+    dev: true
+
   /clipboard/2.0.4:
     resolution: {integrity: sha512-Vw26VSLRpJfBofiVaFb/I8PVfdI1OxKcYShe6fm0sP/DtmiWQNCjhM/okTvdCo0G+lMMm1rMYbk4IK4x1X+kgQ==}
     requiresBuild: true
@@ -21281,6 +21358,14 @@ packages:
     dependencies:
       string-width: 1.0.2
       strip-ansi: 3.0.1
+      wrap-ansi: 2.1.0
+    dev: true
+
+  /cliui/4.1.0:
+    resolution: {integrity: sha512-4FG+RSG9DL7uEwRUZXZn3SS34DiDPfzP0VOiEwtUWlE+AR2EIg+hSyvrIgUUfhdgR/UkAeW2QHgeP+hWrXs7jQ==}
+    dependencies:
+      string-width: 2.1.1
+      strip-ansi: 4.0.0
       wrap-ansi: 2.1.0
     dev: true
 
@@ -21742,9 +21827,19 @@ packages:
     requiresBuild: true
     dev: true
 
+  /core-js/2.6.12:
+    resolution: {integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==}
+    deprecated: core-js@<3.4 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Please, upgrade your dependencies to the actual version of core-js.
+    requiresBuild: true
+
   /core-js/3.15.2:
     resolution: {integrity: sha512-tKs41J7NJVuaya8DxIOCnl8QuPHx5/ZVbFo1oKgVl1qHFBBrDctzQGtuLjPpRdNTWmKPH6oEvgN/MUID+l485Q==}
     requiresBuild: true
+
+  /core-js/3.6.5:
+    resolution: {integrity: sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==}
+    requiresBuild: true
+    dev: true
 
   /core-util-is/1.0.2:
     resolution: {integrity: sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=}
@@ -22081,6 +22176,10 @@ packages:
   /css-what/5.0.1:
     resolution: {integrity: sha512-FYDTSHb/7KXsWICVsxdmiExPjCfRC4qRFBdVwv7Ax9hMnvMmEjP9RfxTEZ3qPZGmADDn2vAKSo9UcN1jKVYscg==}
     engines: {node: '>= 6'}
+    dev: true
+
+  /css.escape/1.5.0:
+    resolution: {integrity: sha1-lZhNeIfOTKkGhOgTlm9C0e+H7Oo=}
     dev: true
 
   /css.escape/1.5.1:
@@ -22656,6 +22755,11 @@ packages:
   /detect-file/1.0.0:
     resolution: {integrity: sha1-8NZtA2cqglyxtzvbP+YjEMjlUrc=}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /detect-indent/5.0.0:
+    resolution: {integrity: sha1-OHHMCmoALow+Wzz38zYmRnXwa50=}
+    engines: {node: '>=4'}
     dev: true
 
   /detect-indent/6.0.0:
@@ -24306,6 +24410,13 @@ packages:
   /fake-tag/2.0.0:
     resolution: {integrity: sha512-QDz+8qiNQ9AfBZ31EXlID5JIbUkU3e1nXDWk4tidFzd2gy8XJaEUW1HCuDY6DUy6t2Y0nvhD6PsUc+2WYy5w0w==}
     engines: {node: '>=10'}
+    dev: true
+
+  /fancy-file-input/2.0.3:
+    resolution: {integrity: sha512-9StOIYtZWoGGWG/OAuI3PmFDNI+TRiTb7nYyglQL2OZPbmp2lw0/qwIEoRD3s5YtNyf078oDTY4xIIDQzk/pdA==}
+    engines: {node: '>= 0.6.0'}
+    peerDependencies:
+      jquery: ^1.11 || ^2.1.0
     dev: true
 
   /fancy-log/1.3.3:
@@ -26613,6 +26724,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /invert-kv/2.0.0:
+    resolution: {integrity: sha512-wPVv/y/QQ/Uiirj/vh3oP+1Ww+AWehmi1g5fFWGPF6IpCBCDVrhgHRMvrLfdYcwDh3QJbGXDW4JAuzxElLSqKA==}
+    engines: {node: '>=4'}
+    dev: true
+
   /invert-kv/3.0.0:
     resolution: {integrity: sha512-JzF8q2BeZA1ZkE3XROwRpoMQ9ObMgTtp0JH8EXewlbkikuOj2GPLIpUipdO+VL8QsTr2teAJD02EFGGL5cO7uw==}
     engines: {node: '>=8'}
@@ -28306,6 +28422,13 @@ packages:
       invert-kv: 1.0.0
     dev: true
 
+  /lcid/2.0.0:
+    resolution: {integrity: sha512-avPEb8P8EGnwXKClwsNUgryVjllcRqtMYa49NTsbQagYuT1DcXnl1915oxWjoyGrXR6zH/Y0Zc96xWsPcoDKeA==}
+    engines: {node: '>=6'}
+    dependencies:
+      invert-kv: 2.0.0
+    dev: true
+
   /lcid/3.1.1:
     resolution: {integrity: sha512-M6T051+5QCGLBQb8id3hdvIW8+zeFV2FyBGFS9IEK5H9Wt4MueD4bW1eWikpHgZp+5xR3l5c8pZUkQsIA0BFZg==}
     engines: {node: '>=8'}
@@ -28517,6 +28640,17 @@ packages:
       parse-json: 4.0.0
       pify: 3.0.0
       strip-bom: 3.0.0
+    dev: true
+
+  /load-json-file/5.3.0:
+    resolution: {integrity: sha512-cJGP40Jc/VXUsp8/OrnyKyTZ1y6v/dphm3bioS+RrKXjK2BB6wHUd6JptZEFDGgGahMT+InnZO5i1Ei9mpC8Bw==}
+    engines: {node: '>=6'}
+    dependencies:
+      graceful-fs: 4.2.6
+      parse-json: 4.0.0
+      pify: 4.0.1
+      strip-bom: 3.0.0
+      type-fest: 0.3.1
     dev: true
 
   /loader-runner/4.2.0:
@@ -29009,6 +29143,15 @@ packages:
   /media-typer/0.3.0:
     resolution: {integrity: sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=}
     engines: {node: '>= 0.6'}
+    dev: true
+
+  /mem/4.3.0:
+    resolution: {integrity: sha512-qX2bG48pTqYRVmDB37rn/6PT7LcR8T7oAX3bf99u1Tt1nzxYfxkgqDwUwolPlXweM0XzBOBFzSx4kfp7KP1s/w==}
+    engines: {node: '>=6'}
+    dependencies:
+      map-age-cleaner: 0.1.3
+      mimic-fn: 2.1.0
+      p-is-promise: 2.1.0
     dev: true
 
   /mem/5.1.1:
@@ -29900,6 +30043,11 @@ packages:
     resolution: {integrity: sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==}
     dev: true
 
+  /object-assign/4.0.1:
+    resolution: {integrity: sha1-mVBEVsNZi1ytT8WcJuipuxB/4L0=}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
   /object-assign/4.1.1:
     resolution: {integrity: sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=}
     engines: {node: '>=0.10.0'}
@@ -30150,6 +30298,15 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       lcid: 1.0.0
+    dev: true
+
+  /os-locale/3.1.0:
+    resolution: {integrity: sha512-Z8l3R4wYWM40/52Z+S265okfFj8Kt2cC2MKY+xNi3kFs+XGI7WXu/I309QQQYbRW4ijiZ+yxs9pqEhJh0DqW3Q==}
+    engines: {node: '>=6'}
+    dependencies:
+      execa: 1.0.0
+      lcid: 2.0.0
+      mem: 4.3.0
     dev: true
 
   /os-locale/5.0.0:
@@ -31614,8 +31771,8 @@ packages:
       tslib: 2.3.0
     dev: true
 
-  /pvutils/1.1.2:
-    resolution: {integrity: sha512-wlo0BUInyP+ZgBJHV8PnJW8S2HubdQfMMip8B9yXr9aFlauJFuF1jZ/RWFmzGYitC7GxkxqXdwbY9/R97v+Cqg==}
+  /pvutils/1.1.3:
+    resolution: {integrity: sha512-pMpnA0qRdFp32b1sJl1wOJNxZLQ2cbQx+k6tjNtZ8CpvVhNqEPRgivZ2WOUev2YMajecdH7ctUPDvEe87nariQ==}
     engines: {node: '>=6.0.0'}
     dev: true
 
@@ -32451,7 +32608,7 @@ packages:
       react-dom: ^15.0.0 || ^16.0.0
     dependencies:
       classnames: 2.3.1
-      core-js: 3.15.2
+      core-js: 2.6.12
       d3-interpolate: 1.4.0
       d3-scale: 2.2.2
       d3-shape: 1.3.7
@@ -33407,7 +33564,7 @@ packages:
     resolution: {integrity: sha512-zZ7nKc5/3QWM3skYBosGDvYQf2jkKhW2u8BELrZoN1wgCSOnwsV9T47Vx9uaNbA3CyZ+V9XSA0tDVHoV1QfVPw==}
     dependencies:
       common-tags: 1.8.0
-      core-js: 3.15.2
+      core-js: 3.6.5
       deepcopy: 2.1.0
       es6-error: 4.1.1
       es6-promisify: 6.1.1
@@ -33474,6 +33631,15 @@ packages:
 
   /sisteransi/1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
+    dev: true
+
+  /skatejs-template-html/0.0.0:
+    resolution: {integrity: sha1-6ZDBp9S1i3MF/8wzOJOb9AICPfc=}
+    dev: true
+
+  /skatejs/0.13.17:
+    resolution: {integrity: sha1-eiH7s0NNpF5StHthZHFo7p53gHE=}
+    engines: {node: '>=0.12.x', npm: 2.x.x}
     dev: true
 
   /slash/1.0.0:
@@ -33629,6 +33795,13 @@ packages:
     dependencies:
       atomic-sleep: 1.0.0
       flatstr: 1.0.12
+    dev: true
+
+  /sort-keys/2.0.0:
+    resolution: {integrity: sha1-ZYU1WEhh7JfXMNbPQYIuH1ZoQSg=}
+    engines: {node: '>=4'}
+    dependencies:
+      is-plain-obj: 1.1.0
     dev: true
 
   /source-list-map/2.0.1:
@@ -34933,6 +35106,10 @@ packages:
     engines: {node: '>=0.6'}
     dev: true
 
+  /trim-extra-html-whitespace/1.3.0:
+    resolution: {integrity: sha1-tH77DRpfKlaoXMRc6lJWUek0BM8=}
+    dev: true
+
   /trim-newlines/3.0.0:
     resolution: {integrity: sha512-C4+gOpvmxaSMKuEf9Qc134F1ZuOHVXKRbtEflf4NTtuuJDEIJ9p5PXsalL8SkeRw+qit1Mo+yuvMPAKwWg/1hA==}
     engines: {node: '>=8'}
@@ -35263,6 +35440,10 @@ packages:
   /unc-path-regex/0.1.2:
     resolution: {integrity: sha1-5z3T17DXxe2G+6xrCufYxqadUPo=}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /underscore/1.13.1:
+    resolution: {integrity: sha512-hzSoAVtJF+3ZtiFX0VgfFPHEDRm7Y/QPjGyNo4TVdnDTdft3tr8hEkD25a1jC+TjTuE7tkHGKkhwCgs9dgBB2g==}
     dev: true
 
   /undertaker-registry/1.0.1:
@@ -36083,6 +36264,10 @@ packages:
     engines: {node: '>= 12'}
     dev: false
 
+  /webcomponents.js/0.7.20:
+    resolution: {integrity: sha1-NnJyGPv1lDOuEBOeWerzz93cEcU=}
+    dev: true
+
   /webcrypto-core/1.2.0:
     resolution: {integrity: sha512-p76Z/YLuE4CHCRdc49FB/ETaM4bzM3roqWNJeGs+QNY1fOTzKTOVnhmudW1fuO+5EZg6/4LG9NJ6gaAyxTk9XQ==}
     dependencies:
@@ -36633,6 +36818,18 @@ packages:
       typedarray-to-buffer: 4.0.0
     dev: true
 
+  /write-json-file/2.3.0:
+    resolution: {integrity: sha1-K2TIozAE1UuGmMdtWFp3zrYdoy8=}
+    engines: {node: '>=4'}
+    dependencies:
+      detect-indent: 5.0.0
+      graceful-fs: 4.2.6
+      make-dir: 1.3.0
+      pify: 3.0.0
+      sort-keys: 2.0.0
+      write-file-atomic: 2.4.3
+    dev: true
+
   /write/1.0.3:
     resolution: {integrity: sha512-/lg70HAjtkUgWPVZhZcm+T4hkL8Zbtp1nFNOn3lRrxnlv50SRBv7cR7RqR+GMsd3hUXy9hWBo4CHTbFTcOYwig==}
     engines: {node: '>=4'}
@@ -36832,6 +37029,12 @@ packages:
       camelcase: 3.0.0
     dev: true
 
+  /yargs-parser/9.0.2:
+    resolution: {integrity: sha1-nM9qQ0YP5O1Aqbto9I1DuKaMwHc=}
+    dependencies:
+      camelcase: 4.1.0
+    dev: true
+
   /yargs-unparser/2.0.0:
     resolution: {integrity: sha512-7pRTIA9Qc1caZ0bZ6RYRGbHJthJWuakf+WmHK0rVeLkNrrGhfoabBNdue6kdINI6r4if7ocq9aD/n7xwKOdzOA==}
     engines: {node: '>=10'}
@@ -36840,6 +37043,23 @@ packages:
       decamelize: 4.0.0
       flat: 5.0.2
       is-plain-obj: 2.1.0
+    dev: true
+
+  /yargs/11.1.1:
+    resolution: {integrity: sha512-PRU7gJrJaXv3q3yQZ/+/X6KBswZiaQ+zOmdprZcouPYtQgvNU35i+68M4b1ZHLZtYFT5QObFLV+ZkmJYcwKdiw==}
+    dependencies:
+      cliui: 4.1.0
+      decamelize: 1.2.0
+      find-up: 2.1.0
+      get-caller-file: 1.0.3
+      os-locale: 3.1.0
+      require-directory: 2.1.1
+      require-main-filename: 1.0.1
+      set-blocking: 2.0.0
+      string-width: 2.1.1
+      which-module: 2.0.0
+      y18n: 3.2.1
+      yargs-parser: 9.0.2
     dev: true
 
   /yargs/13.3.2:
@@ -36927,6 +37147,18 @@ packages:
       pkg-dir: 4.2.0
     dev: true
 
+  /yarn-version-bump/0.0.4:
+    resolution: {integrity: sha512-kAayP9BYbYMk5CE6gdV5gzKAfVEvdutbS0hlDF8OuLnETC9k3AULdbBmbrP3V5xeSYCRtGAaINFH+HDTECZfMQ==}
+    engines: {node: '>= 4'}
+    hasBin: true
+    peerDependencies:
+      yarn: '>=1'
+    dependencies:
+      load-json-file: 5.3.0
+      write-json-file: 2.3.0
+      yargs: 11.1.1
+    dev: true
+
   /yauzl/2.10.0:
     resolution: {integrity: sha1-x+sXyT4RLLEIb6bY5R+wZnt5pfk=}
     dependencies:
@@ -36993,4 +37225,10 @@ packages:
 
   /zwitch/1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
+    dev: true
+
+  github.com/atlassian/tether/bf85430889b5231fbe5b383416cce6281225bf06:
+    resolution: {tarball: https://codeload.github.com/atlassian/tether/tar.gz/bf85430889b5231fbe5b383416cce6281225bf06}
+    name: tether
+    version: 0.6.5
     dev: true

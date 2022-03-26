@@ -688,7 +688,7 @@ commands:
       LOKI_LOG_FILE: $HOME/.sourcegraph-dev/logs/loki/loki.log
 
   storybook:
-    cmd: yarn storybook
+    cmd: pnpm storybook
     install: pnpm install
 
   # This will execute `env`, a utility to print the process environment. Can
@@ -697,7 +697,7 @@ commands:
     cmd: env
 
   bext:
-    cmd: yarn --cwd client/browser dev
+    cmd: pnpm --filter @sourcegraph/browser dev
     install: pnpm install
 
 defaultCommandset: enterprise
@@ -939,28 +939,28 @@ tests:
       PASSWORD: '12345'
 
   web-integration:
-    cmd: yarn test-integration
-    install: ENTERPRISE=1 yarn build-web
+    cmd: pnpm test-integration
+    install: ENTERPRISE=1 pnpm build-web
 
   bext:
-    cmd: yarn --cwd client/browser test
+    cmd: pnpm --filter @sourcegraph/browser test
 
   bext-build:
-    cmd: EXTENSION_PERMISSIONS_ALL_URLS=true yarn --cwd client/browser build
+    cmd: EXTENSION_PERMISSIONS_ALL_URLS=true pnpm --filter @sourcegraph/browser build
 
   bext-integration:
-    cmd: POLLYJS_MODE=replay yarn --cwd client/browser test-integration
+    cmd: POLLYJS_MODE=replay pnpm --filter @sourcegraph/browser test-integration
 
   bext-e2e:
-    cmd: yarn --cwd client/browser mocha ./src/end-to-end/github.test.ts ./src/end-to-end/gitlab.test.ts
+    cmd: pnpm --filter @sourcegraph/browser mocha ./src/end-to-end/github.test.ts ./src/end-to-end/gitlab.test.ts
     env:
       SOURCEGRAPH_BASE_URL: https://sourcegraph.com
 
   frontend:
-    cmd: yarn run jest --testPathIgnorePatterns end-to-end regression integration storybook
+    cmd: pnpm run jest --testPathIgnorePatterns end-to-end regression integration storybook
 
   frontend-e2e:
-    cmd: yarn run mocha ./client/web/src/end-to-end/end-to-end.test.ts
+    cmd: pnpm run mocha ./client/web/src/end-to-end/end-to-end.test.ts
     env:
       TS_NODE_PROJECT: client/web/src/end-to-end/tsconfig.json
 

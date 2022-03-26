@@ -161,11 +161,6 @@ func addSVGLint(pipeline *bk.Pipeline) {
 		bk.Cmd("dev/check/svgo.sh"))
 }
 
-func addYarnDeduplicateLint(pipeline *bk.Pipeline) {
-	pipeline.AddStep(":lipstick: :yarn: Yarn deduplicate lint",
-		bk.Cmd("dev/check/yarn-deduplicate.sh"))
-}
-
 // Adds Typescript linting. (2x ~41s) + ~60s + ~137s + 7s
 func addTsLint(pipeline *bk.Pipeline) {
 	// - yarn 41s (required on all steps)
@@ -218,11 +213,11 @@ func addBrowserExt(pipeline *bk.Pipeline) {
 			bk.Env("LOG_BROWSER_CONSOLE", "true"),
 			bk.Env("SOURCEGRAPH_BASE_URL", "https://sourcegraph.com"),
 			bk.Env("POLLYJS_MODE", "replay"), // ensure that we use existing recordings
-			bk.Cmd("yarn install"),
-			bk.Cmd("yarn generate"),
-			bk.Cmd("yarn --silent --cwd client/browser run build"),
-			bk.Cmd("yarn run cover-browser-integration"),
-			bk.Cmd("yarn nyc report -r json"),
+			bk.Cmd("pnpm install"),
+			bk.Cmd("pnpm generate"),
+			bk.Cmd("pnpm --silent --filter @sourcegraph/browser run build"),
+			bk.Cmd("pnpm run cover-browser-integration"),
+			bk.Cmd("pnpm nyc report -r json"),
 			bk.Cmd("dev/ci/codecov.sh -c -F typescript -F integration"),
 			bk.ArtifactPaths("./puppeteer/*.png"),
 		)
@@ -294,13 +289,13 @@ func clientChromaticTests(autoAcceptChanges bool) operations.Operation {
 		stepOpts := []bk.StepOpt{
 			// withYarnCache(),
 			bk.AutomaticRetry(3),
-			bk.Cmd("yarn install"),
-			bk.Cmd("yarn gulp generate"),
+			bk.Cmd("pnpm install"),
+			bk.Cmd("pnpm gulp generate"),
 			bk.Env("MINIFY", "1"),
 		}
 
 		// Upload storybook to Chromatic
-		chromaticCommand := "yarn chromatic --exit-zero-on-changes --exit-once-uploaded"
+		chromaticCommand := "pnpm chromatic --exit-zero-on-changes --exit-once-uploaded"
 		if autoAcceptChanges {
 			chromaticCommand += " --auto-accept-changes"
 		} else {
@@ -429,9 +424,9 @@ func addBrowserExtensionE2ESteps(pipeline *bk.Pipeline) {
 			bk.Env("BROWSER", browser),
 			bk.Env("LOG_BROWSER_CONSOLE", "true"),
 			bk.Env("SOURCEGRAPH_BASE_URL", "https://sourcegraph.com"),
-			bk.Cmd("yarn install"),
-			bk.Cmd("yarn --silent --cwd client/browser run build"),
-			bk.Cmd("yarn --silent mocha ./client/browser/src/end-to-end/github.test.ts ./client/browser/src/end-to-end/gitlab.test.ts"),
+			bk.Cmd("pnpm install"),
+			bk.Cmd("pnpm --silent --filter @sourcegraph/browser run build"),
+			bk.Cmd("pnpm --silent mocha ./client/browser/src/end-to-end/github.test.ts ./client/browser/src/end-to-end/gitlab.test.ts"),
 			bk.ArtifactPaths("./puppeteer/*.png"))
 	}
 }
@@ -445,22 +440,22 @@ func addBrowserExtensionReleaseSteps(pipeline *bk.Pipeline) {
 	// Release to the Chrome Webstore
 	pipeline.AddStep(":rocket::chrome: Extension release",
 		// withYarnCache(),
-		bk.Cmd("yarn install"),
-		bk.Cmd("yarn --silent --cwd client/browser run build"),
-		bk.Cmd("yarn --cwd client/browser release:chrome"))
+		bk.Cmd("pnpm install"),
+		bk.Cmd("pnpm --silent --filter @sourcegraph/browser run build"),
+		bk.Cmd("pnpm --filter @sourcegraph/browser release:chrome"))
 
 	// Build and self sign the FF add-on and upload it to a storage bucket
 	pipeline.AddStep(":rocket::firefox: Extension release",
 		// withYarnCache(),
-		bk.Cmd("yarn install"),
-		bk.Cmd("yarn --cwd client/browser release:firefox"))
+		bk.Cmd("pnpm install"),
+		bk.Cmd("pnpm --filter @sourcegraph/browser release:firefox"))
 
 	// Release to npm
 	pipeline.AddStep(":rocket::npm: NPM Release",
 		// withYarnCache(),
-		bk.Cmd("yarn install"),
-		bk.Cmd("yarn --silent --cwd client/browser run build"),
-		bk.Cmd("yarn --cwd client/browser release:npm"))
+		bk.Cmd("pnpm install"),
+		bk.Cmd("pnpm --silent --filter @sourcegraph/browser run build"),
+		bk.Cmd("pnpm --filter @sourcegraph/browser release:npm"))
 }
 
 // Adds a Buildkite pipeline "Wait".
