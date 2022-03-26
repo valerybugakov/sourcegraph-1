@@ -338,7 +338,7 @@
     "zustand": "^3.6.9"
   },
   "scripts": {
-    "storybook": "STORIES_GLOB='client/search-ui/src/**/*.story.tsx' yarn workspace @sourcegraph/storybook run start",
+    "storybook": "STORIES_GLOB='client/search-ui/src/**/*.story.tsx' pnpm --filter @sourcegraph/storybook run start",
     "eslint": "eslint --cache 'src/**/*.[jt]s?(x)'",
     "test": "jest"
   }
